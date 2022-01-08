@@ -6,8 +6,8 @@
 	<head>
 		<?php $this->load->view(FRONTEND.'head'); ?>
 	</head>
-	<body>
-		<div class="page-wrapper">
+	<body class="<?php echo @$body_class ? $body_class : 'has-spotlight ashade-smooth-scroll'?>">
+		<div class="">
 			<?php
 				$this->load->view(FRONTEND.'header', $this->data); 
 				$this->load->view($temp); 

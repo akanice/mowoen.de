@@ -4,36 +4,18 @@
     <meta charset="UTF-8">
     <title>AdminCP Login</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link href="<?=base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/css/admin/bootstrap.min.css')?>" rel="stylesheet">
 
     <!--  Light Bootstrap Dashboard core CSS    -->
-    <link href="<?=base_url('assets/css/light-bootstrap-dashboard.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/css/admin/light-bootstrap-dashboard.css')?>" rel="stylesheet">
 
     <!--     Fonts and icons     -->
-    <link href="<?=base_url('assets/css/font-awesome.min.css')?>" rel="stylesheet">
-    <link href="<?=base_url('assets/css/pe-icon-7-stroke.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/css/admin/font-awesome.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/css/admin/pe-icon-7-stroke.css')?>" rel="stylesheet">
 	
 	<script src="<?=base_url('assets/js/jquery.min.js')?>" type="text/javascript"></script>
-	<script src="<?=base_url('assets/js/jquery-ui.min.js')?>" type="text/javascript"></script>
-	<script src="<?=base_url('assets/js/bootstrap.min.js')?>" type="text/javascript"></script>
-
-	<script src="<?=base_url('assets/js/jquery.validate.min.js')?>"></script>
-	<script src="<?=base_url('assets/js/moment.min.js')?>"></script>
-    <script src="<?=base_url('assets/js/bootstrap-datetimepicker.js')?>"></script>
-    <script src="<?=base_url('assets/js/bootstrap-selectpicker.js')?>"></script>
-	<script src="<?=base_url('assets/js/bootstrap-checkbox-radio-switch-tags.js')?>"></script>
-	<script src="<?=base_url('assets/js/chartist.min.js')?>"></script>
-    <script src="<?=base_url('assets/js/bootstrap-notify.js')?>"></script>
-	<script src="<?=base_url('assets/js/sweetalert2.js')?>"></script>
-	<script src="<?=base_url('assets/ckeditor/ckeditor.js')?>"></script>
-	<script src="<?=base_url('assets/ckeditor/config.js')?>"></script>
-	<script src="<?=base_url('assets/js/jquery-jvectormap.js')?>"></script>
-    <script src="<?=base_url('assets/js/jquery.bootstrap.wizard.min.js')?>"></script>
-	<script src="<?=base_url('assets/js/bootstrap-table.js')?>"></script>
-	<script src="<?=base_url('assets/js/jquery.datatables.js')?>"></script>
-    <script src="<?=base_url('assets/js/fullcalendar.min.js')?>"></script>
+	
 	<script src="<?=base_url('assets/js/light-bootstrap-dashboard.js')?>"></script>
-    <script src="<?=base_url('assets/js/jquery.sharrre.js')?>"></script>
     <script src="<?=base_url('assets/js/demo.js')?>"></script>
 </head>
 
@@ -104,29 +86,29 @@
                 <nav class="pull-left">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="<?=base_url()?>">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                Company
+                            <a href="<?=base_url('/bathroom')?>">
+                                Bathroom
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                Portfolio
+                            <a href="<?=base_url('/kitchen')?>">
+                                Kitchen
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?=base_url('/blog')?>">
                                Blog
                             </a>
                         </li>
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    © 2019 Made for kabu.vn
+                    © 2021 Made for mowoen.de
                 </p>
             </div>
         </footer>

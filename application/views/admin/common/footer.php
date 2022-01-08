@@ -4,14 +4,14 @@
                     
                 </nav>
                 <p class="copyright pull-right">
-                    © 2021 <a href="#">mowoen.com</a> - mowoen.com
+                    © 2022 <a href="#">mowoen.de</a> - mowoen.de
                 </p>
             </div>
         </footer>
 	</div>
 </div>
 
-	<script src="<?=base_url('assets/js/jquery.min.js')?>" type="text/javascript"></script>
+	<script src="<?=base_url('assets/js/jquery-1.11.1.min.js')?>" type="text/javascript"></script>
 	<script src="<?=base_url('assets/js/jquery-migrate-1.2.1.min.js')?>" type="text/javascript"></script>
 	<script src="<?=base_url('assets/js/jquery-ui.min.js')?>" type="text/javascript"></script>
 	<script src="<?=base_url('assets/js/bootstrap.min.js')?>" type="text/javascript"></script>

@@ -657,20 +657,20 @@ ashade.init = function() {
 	$ashade_header_holder = jQuery('<div class="ashade-header-holder"></div>');
 	$ashade_header_holder.height($ashade_header.height()).prependTo($ashade_scroll);
 	
-	// Set Logo Size
-	if (jQuery('a.ashade-logo').length) {
-		jQuery('a.ashade-logo').each(function() {
-			let $this = jQuery(this),
-				$img = $this.children('img'),
-				w = $img.attr('width'),
-				h = $img.attr('height');
-			if ($this.hasClass('is-retina')) {
-				$this.width(w/2).height(h/2);
-			} else {
-				$this.width(w).height(h);
-			}
-		});
-	}
+	// Set Logo Size - Vietth
+	// if (jQuery('a.ashade-logo').length) {
+	// 	jQuery('a.ashade-logo').each(function() {
+	// 		let $this = jQuery(this),
+	// 			$img = $this.children('img'),
+	// 			w = $img.attr('width'),
+	// 			h = $img.attr('height');
+	// 		if ($this.hasClass('is-retina')) {
+	// 			$this.width(w/2).height(h/2);
+	// 		} else {
+	// 			$this.width(w).height(h);
+	// 		}
+	// 	});
+	// }
 	
 	// Set Menu Active Parent Items
 	if (jQuery('.current-menu-item').length) {

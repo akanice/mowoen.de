@@ -82,8 +82,8 @@ class Products extends MY_Controller {
 				$total = $this->data['total'] = count($this->newsmodel->read(array('type'=>$type,'post_type'=>$post_type)));
 				$per_page = 20;
 				list($this->data['page_links'],$start)	= $this->newsmodel->pagination($type.'/'.$post_type.'/','',$total,$per_page,3);
-				$this->data['page_links'] 					= $this->pagination->create_links();
-				$this->data['inspiration'] 						= $this->newsmodel->read(array('type'=>$type,'post_type'=>$post_type),array(),false,$per_page,$start);
+				$this->data['page_links'] 				= $this->pagination->create_links();
+				$this->data['inspiration'] 				= $this->newsmodel->read(array('type'=>$type,'post_type'=>$post_type),array(),false,$per_page,$start);
 				
 				$this->data['title'] = 'Chuyên mục - '.$type;
 				$this->data['meta_title'] = $this->data['title'];

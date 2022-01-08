@@ -1,9 +1,9 @@
 $(window).scroll(function() {	
 	// Sticky header
 	var windowWidth = window.innerWidth || $(window).width();
-	header_one = $("header.page-header");
+	header_one = $("header .menu-header");
 	if (windowWidth >= 992) {
-		if ($(".page-wrapper").outerHeight() > $(window).innerHeight() + 300 && $(window).scrollTop() > 200) {
+		if ($("body").outerHeight() > $(window).innerHeight() + 300 && $(window).scrollTop() > 200) {
 			$(header_one).addClass("boutique-header_sticky");
 		} else if ($(window).scrollTop() <= 200) {
 			$(header_one).removeClass("boutique-header_sticky");

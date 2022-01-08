@@ -1,5 +1,5 @@
 type = ['','info','success','warning','danger'];
-$('#nml-sidebar').perfectScrollbar();
+
 $().ready(function(){
     $sidebar = $('.sidebar');
     $sidebar_img_container = $sidebar.find('.sidebar-background');

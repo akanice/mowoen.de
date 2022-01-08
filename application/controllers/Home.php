@@ -65,6 +65,7 @@ class Home extends MY_Controller {
 		$this->data['meta_title'] = @$options['home_meta_title']->value;
         $this->data['meta_description'] = @$options['home_meta_description']->value;
         $this->data['meta_keywords'] = @$options['home_meta_keywords']->value;
+        $this->data['body_class'] = 'has-spotlight ashade-albums-template ashade-albums-template--carousel';
 		
         $this->data['temp'] = 'frontend/home/index';
 		$this->load->view('frontend/index', $this->data);

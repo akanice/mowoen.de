@@ -4,7 +4,6 @@
 
 	<div class="main">
 		<?php
-			$this->load->view(FRONTEND.F_HOME.'slider',$this->data);
-			$this->load->view(FRONTEND.F_HOME.'main_content');
+			$this->load->view(FRONTEND.F_HOME.'main_content',$this->data);
 		?>
 	</div>

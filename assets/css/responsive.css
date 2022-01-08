@@ -972,7 +972,8 @@ body section.ashade-section.hide-on-desktop {
 	
 	/* --- Content --- */
 	.ashade-content {
-		width: calc(100% - 40px);
+		/* width: calc(100% - 40px); */
+		width: 100%;
 	}
 	aside#ashade-aside {
 		max-width: calc(100% - 40px);
@@ -1065,7 +1066,7 @@ body section.ashade-section.hide-on-desktop {
 		margin-right: 20px;
 	}
 	.ashade-albums-carousel-wrap .ashade-album-item .ashade-button {
-		bottom: 20px;
+		bottom: 80px;
 		right: 20px;
 	}
 	.ashade-albums-carousel-progress {
@@ -1293,6 +1294,22 @@ body section.ashade-section.hide-on-desktop {
 	.ashade-service-card .ashade-service-card__label h4 {
 		margin: 7px 0 0 0;
 	}
+}
+/* Vietth Mobile Phone Styles */
+@media only screen and (max-width: 760px) {
+	.product-box h5 {
+		font-size: 12px;
+		line-height: 1.3;
+		color: #9d9d9d;
+	}
+	.product-title {
+		font-size: 28px;
+		line-height: 1.3;
+	}
+	header#ashade-header {
+		background: linear-gradient(180deg, black, transparent);
+	}
+
 }
 /* Old Mobile Phone Styles */
 @media only screen and (max-width: 340px) {

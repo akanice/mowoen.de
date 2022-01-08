@@ -10,24 +10,23 @@
 	<meta content="" name="description" />
 	<meta content="akanice" name="author" />
 
-    <link href="<?=base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('/assets/css/admin/bootstrap.min.css')?>" rel="stylesheet">
 	<link rel="icon" href="<?=base_url('wp-content/uploads/2018/06/favicon.png')?>" sizes="32x32" />
 	<link rel="apple-touch-icon-precomposed" href="<?=base_url('wp-content/uploads/2018/06/favicon.png')?>" />
     <!--  Light Bootstrap Dashboard core CSS    -->
-    <link href="<?=base_url('assets/css/light-bootstrap-dashboard.css')?>" rel="stylesheet">
-    <link href="<?=base_url('assets/css/chosen.css')?>" rel="stylesheet">
+    <link href="<?=base_url('/assets/css/admin/light-bootstrap-dashboard.css')?>" rel="stylesheet">
+    <link href="<?=base_url('/assets/css/admin/chosen.css')?>" rel="stylesheet">
 	<link rel="stylesheet" href="/assets/plugins/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-    <link href="<?=base_url('assets/css/admin-custom.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/css/admin/admin-custom.css')?>" rel="stylesheet">
 
     <!--     Fonts and icons     -->
-    <link href="<?=base_url('assets/css/font-awesome.min.css')?>" rel="stylesheet">
-    <link href="<?=base_url('assets/css/pe-icon-7-stroke.css')?>" rel="stylesheet">
-	<link href="<?=base_url('assets/fonts/fontbakery/font-bakery.css')?>" rel="stylesheet">
+    <link href="<?=base_url('/assets/css/admin/font-awesome.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('/assets/css/admin/pe-icon-7-stroke.css')?>" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&amp;subset=vietnamese" rel="stylesheet">
     <!-- ie8 fixes -->
     <!--[if lt IE 9]>
-       <script src="<?=base_url('assets/js/excanvas.js')?>"></script>
-       <script src="<?=base_url('assets/js/respond.js')?>"></script>
+       <script src="<?=base_url('assets/js/admin/excanvas.js')?>"></script>
+       <script src="<?=base_url('assets/js/admin/respond.js')?>"></script>
        <![endif]-->
 
 </head>
