@@ -1,9 +1,9 @@
 	
 	<!-- Transition Object -->
     <div class="ashade-page-title-wrap">
-        <h1 class="ashade-page-title">
-            <span>Products</span>
-            Mowöen
+        <h1 class="ashade-page-title text-capitalize">
+            <span>Mowöen</span>
+            <?=@$category_data->title?>
         </h1>
     </div>
 
@@ -13,16 +13,39 @@
 				<section class="ashade-section">
 					<div class="ashade-row">
 						<div class="ashade-col col-12">
-							<h1 class="text-center"><?=@$category_data->title?></h1>
-							<p class="ashade-intro">Nếu bạn yêu thích thiết kế trong phòng tắm cũng như nhà bếp và nhận ra tầm quan trọng của chất lượng sản phẩm, thì đây là nơi phù hợp nhất cho bạn. Bạn sẽ tìm thấy vô số sản phẩm cao cấp cho vòi hoa sen, phòng tắm và nhà bếp với Mowoen. Hãy tham khảo các dòng sản phẩm của chúng tôi: Vòi dùng cho bồn rửa mặt, vòi hoa sen và bồn tắm. Tất cả các loại vòi hoa sen: vòi hoa sen cầm tay, vòi hoa sen trên cao, vòi sen và hệ thống vòi hoa sen. Các sản phẩm nhà bếp, bao gồm vòi bếp, chậu rửa bát và các thiết bị combi chậu rửa và vòi.</p>
+							<h1 class="text-center d-none d-sm-block"><?=@$category_data->title?></h1>
+							<p class="ashade-intro">Nếu bạn yêu thích thiết kế trong phòng tắm cũng như nhà bếp và nhận ra tầm quan trọng của chất lượng sản phẩm, thì đây là nơi phù hợp nhất cho bạn. Bạn sẽ tìm thấy vô số sản phẩm cao cấp cho vòi hoa sen, phòng tắm và nhà bếp với Mowöen.</p>
 						</div>
 					</div>
 				</section>
 				
+				<section class="utility-bar mow">
+					<div class="row ashade-row">
+						<div class="col-12 col-md-6 col-lg-3 ashade-col">
+							<?php if ($list_dimension) {
+								$currentURL = current_url();
+								$p_cat_id = $this->input->get('cat_id');
+								$p_dimension = $this->input->get('dimension');
+							?>
+							<div class="filter_dimension">
+								<select class="form-control filter" name="brand_alias" id="dynamic_select">
+									<option value="<?=base_url($type.'/products/').'?cat_id='.urlencode(@$p_cat_id).'&dimension='?>" <?php if($p_dimension == '') {echo 'selected';}?>>Tất cả kích thước</option>
+									<?php foreach ($list_dimension as $item) {?>
+										<option value="<?=base_url($type.'/products/').'?cat_id='.urlencode(@$p_cat_id).'&dimension='.urlencode(@$item->dimension)?>" <?php if($p_dimension == $item->dimension) {echo 'selected';}?>>
+											<?=$item->dimension?>
+										</option>
+									<?php }?>
+								</select>
+							</div>
+							<?php } ?>
+						</div>
+					</div>
+				</section>
+
 				<section class="ashade-section ratio_square">
 					<div class="ashade-row">
 						<div class="ashade-col col-12">
-							<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4">
+							<div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4">
 								<?php if ($products) { foreach ($products as $item) { ?>	
 								<div class="product-box  col">
 									<div class="ashade-album-item__image img-block">

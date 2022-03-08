@@ -15,7 +15,7 @@ body {
     font-size: 16px;
     line-height: 28px;
 	font-weight: 500;
-    color: #808080;
+    color: #9d9d9d;
 	opacity: 0;
 	pointer-events: none;
 }
@@ -197,7 +197,7 @@ body.has-spotlight:before {
 /* --- Section --- */
 #ashade-home-works p.ashade-intro,
 section.ashade-section {
-	margin-bottom: 150px;
+	margin-bottom: 90px;
 	display: block;
 	width: 100%;
 }
@@ -853,12 +853,13 @@ nav.ashade-nav ul li a {
     text-transform: uppercase;
     display: block;
     letter-spacing: 0.6px;
+	padding: 10px 12px;
 }
 nav.ashade-nav ul.main-menu {
     flex-direction: row;
 }
 nav.ashade-nav ul.main-menu > li {
-    margin: 0 25px;
+    margin: 0 10px;
 }
 nav.ashade-nav ul.sub-menu {
     position: absolute;
@@ -868,8 +869,9 @@ nav.ashade-nav ul.sub-menu {
     width: auto;
     transition: opacity 0.3s;
     opacity: 0;
-    padding: 0px 0 0 0;
+    padding: 8px 15px;
     pointer-events: none;
+	background: #3c3c3c85;
 }
 nav.ashade-nav ul.sub-menu.ashade-menu-offset {
 	left: auto;
@@ -913,7 +915,6 @@ nav.ashade-nav li:hover > ul.sub-menu {
     pointer-events: auto;
 }
 nav.ashade-nav ul.sub-menu a {
-    padding: 10px 0 0 0;
     display: block;
     white-space: nowrap;
 }
@@ -949,8 +950,8 @@ nav.ashade-nav ul.main-menu li.current-menu-ancestor > a {
     max-width: 1280px;
     margin: auto;
     min-height: 100%;
-	padding-top: 100px;
-	padding-bottom: 90px;
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
 
 .uws-default .ashade-content {
@@ -2914,7 +2915,7 @@ strong {
     margin-left: 0px;
 }
 nav.ashade-nav ul.menu-header {
-	padding: 10px;
+	padding: 0;
 	border-radius: 5px;
 }
 .menu-header.boutique-header_sticky {
@@ -2942,4 +2943,55 @@ nav.ashade-nav ul.menu-header {
 .ashade-row .row .col {
 	padding-left: 10px;
 	padding-right: 10px;
+}
+.utility-bar {
+	margin-bottom: 30px;
+}
+.utility-bar ul {
+	margin: 0;
+	padding: 0;
+}
+.utility-bar ul li {
+	list-style: none;
+	margin: 0;
+}
+.mow .btn-outline-light {
+	border-color: #cbcbcb;
+	color: #cbcbcb;
+	transition: all 0.2s linear;
+}
+.mow .btn-outline-light:hover,.mow .btn-outline-light:focus {
+	border-color: #fff;
+	color: #333;
+}
+.uws-info-tex p {
+	text-align: justify;
+}
+.file_row {
+	font-size: 1rem;
+	border-bottom: 1px solid #9f9f9f;
+	padding-bottom: 5px;
+	color: #9f9f9f;
+}
+.slider-nav .nav-item {
+    max-width: 90%;
+    border-radius: 0;
+    height: 5px;
+    transition: all .25s ease-in-out;
+    background: #fff;
+    opacity: .2;
+}
+.slider-nav .slick-slide.slick-current.slick-active .nav-item {
+    background: #26a792;
+    opacity: 1;
+}
+.filter_dimension .filter {
+	width: 100%;
+	margin: 0 0 30px;
+	background: transparent;
+	border: 1px solid #9c9c9c;
+	color: #fff;
+}
+.filter_dimension .filter option {
+	color: #333;
 }

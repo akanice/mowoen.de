@@ -115,7 +115,7 @@ class Products extends MY_Controller{
 			$product_id = $this->productsmodel->create($data);
 			$this->productsmodel->update(array('alias'=>make_alias($this->input->post("title").'-'.$product_id)),array('id'=>$product_id));
 
-			// $this->attachData($product_id, 'file_attach', $this->input->post("files"));
+			$this->attachData($product_id, 'file_attach', json_encode($this->input->post("file_attach")));
 			$this->attachData($product_id, 'video_attach', $this->input->post("videos"));
 			$this->attachData($product_id, 'actual_image', json_encode($this->input->post("actual_image")));
 			$this->attachData($product_id, 'circleview', json_encode($this->input->post("circleview")));
@@ -166,6 +166,8 @@ class Products extends MY_Controller{
 			// Gallery
 			$gallery = array();
 			$gallery = json_encode($this->input->post("gallery"));
+			$file_attach = array();
+			$file_attach = json_encode($this->input->post("file_attach"));
 			$actual_image = array();
 			$actual_image = json_encode($this->input->post("actual_image"));
 			$circleview = array();
@@ -198,9 +200,9 @@ class Products extends MY_Controller{
 			);
 
 			$this->productsmodel->update($data,array('id'=>$id));
-
+			
 			// File Attach
-			// $this->attachData($id, 'file_attach', 'assets/uploads/'.$this->input->post("files"));
+			$this->attachData($id, 'file_attach', json_encode($this->input->post("file_attach")));
 			$this->attachData($id, 'video_attach', $this->input->post("videos"));
 			$this->attachData($id, 'actual_image', json_encode($this->input->post("actual_image")));
 			$this->attachData($id, 'circleview', json_encode($this->input->post("circleview")));
@@ -231,8 +233,12 @@ class Products extends MY_Controller{
 			// Gallery
 			$gallery = array();
 			$gallery = json_encode($this->input->post("gallery"));
+			$file_attach = array();
+			$file_attach = json_encode($this->input->post("file_attach"));
 			$actual_image = array();
 			$actual_image = json_encode($this->input->post("actual_image"));
+			$circleview = array();
+			$circleview = json_encode($this->input->post("circleview"));
 
 			$categories = json_encode($this->input->post("categoryid"));
 			if (!$categories || $categories == '') {$categories = '["0"]';}
@@ -270,9 +276,10 @@ class Products extends MY_Controller{
 				$this->tagstermmodel->create(array('type'=>'product','term_id'=>$product_id,'tag_id'=>$tags));
 			}
 			
-			$this->attachData($product_id, 'file_attach', $this->input->post("files"));
+			$this->attachData($product_id, 'file_attach', json_encode($this->input->post("file_attach")));
 			$this->attachData($product_id, 'video_attach', $this->input->post("videos"));
 			$this->attachData($product_id, 'actual_image', json_encode($this->input->post("actual_image")));
+			$this->attachData($id, 'circleview', json_encode($this->input->post("circleview")));
 			
 			redirect(base_url() . "admin/products/edit/".$product_id);
 			exit();
@@ -299,8 +306,7 @@ class Products extends MY_Controller{
 		
 		// Extra data for product
 		$this->data['p_custom_data'] = @json_decode($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'custom_field'),array(),true)->value);
-		$this->data['p_file_attach'] = @$this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'file_attach'),array(),true)->value;
-		$this->data['p_file_attach'] = str_replace('assets/uploads/', '', $this->data['p_file_attach']);
+		$this->data['file_attach'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'file_attach'),array(),true)->value);
 		$this->data['p_video_attach'] = @$this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'video_attach'),array(),true)->value;
 		$this->data['actual_image'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'actual_image'),array(),true)->value);
 		$this->data['circleview'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'circleview'),array(),true)->value);

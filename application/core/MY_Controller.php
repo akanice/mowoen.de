@@ -73,6 +73,8 @@ class MY_Controller extends MX_Controller {
 		
 		$this->load->model('productscategorymodel');
 		$this->data['listcategories'] = $this->productscategorymodel->read(array('parent_id'=>0),array('id'=>false),false);
+		$this->data['kitchen_cat'] = $this->productscategorymodel->read(array('parent_id'=>0,"type"=>'kitchen'),array('id'=>false),false);
+		$this->data['bathroom_cat'] = $this->productscategorymodel->read(array('parent_id'=>0,"type"=>'bathroom'),array('id'=>false),false);
 		$this->data['global_cart'] = $this->cart->contents();
 	}
 	

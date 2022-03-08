@@ -211,7 +211,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Ảnh thực tế</label>
 							<div class="col-sm-10" id="realtime_display_actual">
-								<br><p><a href="/assets/filemanager/dialog.php?type=1&field_id=actual_image&relative_url=0&multiple=1" class="btn btn-sm btn-fill btn-info iframe-btn" type="button">Thêm ảnh thực tế</a></p>
+								<br><p><a href="/assets/filemanager/dialog.php?type=1&field_id=actual_image&relative_url=0&multiple=1&callback=responsive_filemanager_callback" class="btn btn-sm btn-fill btn-info iframe-btn" type="button">Thêm ảnh thực tế</a></p>
 								<input type="hidden" class="form-control" id="actual_image" value="" />
 								<div class="append_html">
 									<?php 
@@ -226,8 +226,18 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">File đính kèm</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="files" id="files" value="<?=@$p_file_attach?>" readonly/>
-								<p><a href="/assets/filemanager/dialog.php?type=2&field_id=files&relative_url=1" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Open Filemanager</a></p>
+								<p><a href="/assets/filemanager/dialog.php?type=2&field_id=file_attach&relative_url=0&multiple=1&callback=responsive_filemanager_callback2" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Open Filemanager</a></p>
+								<input type="hidden" class="form-control" id="file_attach" value="" />
+								<div class="append_html">
+									<?php 
+										$file_attach = json_decode($file_attach);
+										if($file_attach) {foreach ($file_attach as $i=>$file) {
+									?>
+									<div class="rel"><p class="file_attach"><?=@$file?></p><span class="remove"><i class="fa fa-times"></i></span>
+										<input type="hidden" name="file_attach[]" value="<?=@$file?>">
+									</div>
+									<?php }} ?>
+								</div>
 							</div>
 						</div>
 						
@@ -260,6 +270,19 @@
 			}
 		}
 		
+		function responsive_filemanager_callback2(field_id){
+			var file_data = $('#'+field_id).val();
+			if(IsJsonString(file_data) == true) {
+				var file_data = jQuery.parseJSON(file_data);
+				file_data.forEach(function(item, index) {
+					$('#'+field_id).next('.append_html').append('<div class="rel"><p class="file_attach">'+item+'</p><span class="remove"><i class="fa fa-times"></i></span><input type="hidden" name="'+field_id+'[]" value="'+item+'"></div>');
+				},field_id);
+			} else {
+				print_single_file(file_data,field_id);
+			}
+
+		}
+		
 		// check json
 		function IsJsonString(str) {
 			try {
@@ -272,6 +295,10 @@
 	
 		function print_single_img(img_data,field_id) {
 			$('#'+field_id).next('.append_html').append('<div class="rel"><img src="'+img_data+'" height="60px"><span class="remove"><i class="fa fa-times"></i></span><input type="hidden" name="'+field_id+'[]" value="'+img_data+'"></div>');
+		}
+
+		function print_single_file(file_data,field_id) {
+			$('#'+field_id).next('.append_html').append('<div class="rel"><p class="file_attach">'+file_data+'</p><span class="remove"><i class="fa fa-times"></i></span><input type="hidden" name="'+field_id+'[]" value="'+file_data+'"></div>');
 		}
 		
 		$('.append_html').on('click','.remove',function() {

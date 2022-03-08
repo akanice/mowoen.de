@@ -75,3 +75,13 @@
     text-align: center;
     cursor: pointer;
 }
+.btn-warning.btn-fill.btn-mow-admin {
+    background-color: #262626;
+    border-color: #262626;
+}
+.file_attach {
+    font-size: 12px;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 5px;
+}

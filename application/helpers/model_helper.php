@@ -260,3 +260,11 @@ if (!function_exists('generateUserCode')){
 		return $str;
 	}
 }
+
+if (!function_exists('getFileName')){
+	function getFileName($url) {
+		$tokens = explode('/', $url);
+		$str = $tokens[sizeof($tokens)-1];
+		return $str;
+	}
+}

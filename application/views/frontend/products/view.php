@@ -1,8 +1,8 @@
 	<!-- Transition Object -->
     <div class="ashade-page-title-wrap">
-        <h1 class="ashade-page-title">
-            <span>Products</span>
-            Mowöen
+        <h1 class="ashade-page-title text-capitalize">
+            <span>Mowöen</span>
+            <?=@$type?>
         </h1>
     </div>
 
@@ -88,7 +88,7 @@
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
 												<div class="pure_circle">
 													<div id="circlr">
-														<?php foreach ($circleview as $item) {?>
+														<?php foreach (@$circleview as $item) {?>
 														<img data-src="<?=@($item)?>" class="img-circle">
 														<?php } ?>
 														<div id="loader"></div>
@@ -110,9 +110,12 @@
 											<a href="tel:<?=@$home_hotline?>" class="ashade-button">Contact Us</a>
 											<a href="#productInfo" class="ashade-button scroll"><b>Detail</b></a>
 										</div>
-
+										<hr />
 										<div class="product-description">
-																					
+											<?php if (@$file_attach) {
+											 foreach ($file_attach as $file) { ?>
+												<p><a href="<?=$file?>" target="_blank" class="file_row"><i class="fa fa-file-pdf"></i> <?php echo getFileName($file)?></a></p>
+											<?php }} ?>								
 										</div>
 									</div>
 								</div>

@@ -154,8 +154,8 @@ class Products extends MY_Controller {
 	
 	// URL: abc.com/bath/products/{index}
 	public function viewProduct($item) {
-		$type				= $this->uri->segment(1);
-		$post_type	= $this->uri->segment(2);
+		$this->data['type'] = $type = $this->uri->segment(1);
+		$post_type = $this->uri->segment(2);
 		$this->load->model('videosmodel');
 		
 		if (isset($item) and ($item) != '') {
@@ -173,9 +173,9 @@ class Products extends MY_Controller {
 				}
 				
 				// Load file_attach
-				$this->data['file_attach'] 		= @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'file_attach'),array(),true)->value;
+				$this->data['file_attach'] = json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'file_attach'),array(),true)->value);
 				$this->data['actual_image']	= json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'actual_image'),array(),true)->value);
-				@$this->data['circleview']			= array_reverse(json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'circleview'),array(),true)->value));
+				@$this->data['circleview'] = array_reverse(json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'circleview'),array(),true)->value));
 				$this->data['video_attach']	= @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach'),array(),true)->value;
 
 				// Display video youtube

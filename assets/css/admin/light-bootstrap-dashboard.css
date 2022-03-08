@@ -4296,14 +4296,14 @@ h1 .subtitle {
   color: #fff;
 }
 .sidebar .nav li:hover > a {
-  background:  #0b816f;
+  background:  #3e3e3e;
   opacity: 1;
   color: #FFFFFF;
 }
 .sidebar .nav li.active > a {
   color: #FFFFFF;
   opacity: 1;
-  background: #0b816f;
+  background: #3e3e3e;
 }
 .sidebar .nav [data-toggle="collapse"] ~ div > ul > li > a {
   padding-left: 20px;
@@ -4507,14 +4507,7 @@ h1 .subtitle {
 }
 .sidebar[data-color="purple"]:after,
 .bootstrap-navbar[data-color="purple"]:after {
-  background: #26a792;
-  /* background: -moz-linear-gradient(top, #9368E9 0%, rgba(148, 59, 234, 0.7) 100%); */
-  /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9368E9), color-stop(100%, rgba(148, 59, 234, 0.7))); */
-  /* background: -webkit-linear-gradient(top, #9368E9 0%, rgba(148, 59, 234, 0.7) 100%); */
-  /* background: -o-linear-gradient(top, #9368E9 0%, rgba(148, 59, 234, 0.7) 100%); */
-  /* background: -ms-linear-gradient(top, #9368E9 0%, rgba(148, 59, 234, 0.7) 100%); */
-  /* background: linear-gradient(to bottom, #9368E9 0%, rgba(148, 59, 234, 0.7) 100%); */
-  /* background-size: 150% 150%; */
+  background: #282828;
 }
 
 .main-panel {
