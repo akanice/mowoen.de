@@ -35,6 +35,8 @@
 	<link href="<?=base_url('assets/css/photoswipe.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/default-skin/default-skin.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/tiny-slider.css')?>" rel="stylesheet">
+	<link href="<?=base_url('assets/css/slick.css')?>" rel="stylesheet">
+	<link href="<?=base_url('assets/css/slick-theme.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/style.css')?>" rel="stylesheet">
 	<link href="<?=base_url('assets/css/responsive.css')?>" rel="stylesheet">
 

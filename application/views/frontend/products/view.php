@@ -42,6 +42,25 @@
 	<main class="ashade-content-wrap uws-default uws-eshop-detail">
 		<div class="ashade-content-scroll">
 			<div class="ashade-content">
+				<section class="breadcrumbs mb-3">
+					<div class="ashade-row">
+						<div class="ashade-col col-12">
+							<div class="breadcrumb">
+								<a href="<?=base_url()?>">Home</a>
+								<span class="slash-divider">/</span>
+								<?php if (isset($category)) {$space='';?>
+								<span>
+									<?php foreach ($category as $n) {?>
+										<?=$space;?><a class="crumb" href="<?=base_url('category/'.$n->alias)?>"><?=@$n->title?></a>
+									<?php $space='<span class="slash-divider">/</span>';} ?>
+									<?php } ?>
+								</span>
+								<span class="slash-divider">/</span>
+								<a href="<?=base_url()?>"><?=@$product_data->title?></a>
+							</div>
+						</div>
+					</div>
+				</section>
 				<section class="ashade-section">
 					<div class="ashade-row">
 						<div class="ashade-col col-12">
@@ -112,16 +131,13 @@
 										</div>
 										<hr />
 										<div class="product-description">
-											<?php if (@$file_attach) {
-											 foreach ($file_attach as $file) { ?>
-												<p><a href="<?=$file?>" target="_blank" class="file_row"><i class="fa fa-file-pdf"></i> <?php echo getFileName($file)?></a></p>
-											<?php }} ?>								
+																		
 										</div>
 									</div>
 								</div>
 							</div>
-															
-							<div class="row ashade-small-gap">
+								
+							<div class="row ashade-small-gap mb-5">
 								<div class="ashade-col col-12 align-left uws-content-detail">
 						
 									<div class="ashade-row uws-bath-types">
@@ -132,13 +148,83 @@
 													<?=@$product_data->short_description?>
 													<?=@$product_data->descipriton?>
 												</div>
-												<div class="col-12 col-sm-6 uws-info-text mt-5">
+												<div class="col-12 col-sm-6 uws-info-text specs mt-5">
 													<h5>Specification</h5>
-													<ul>
-														<li>White color (standard)</li>
-														<li>Other colors on demand (RAL sampler)</li>
-														<li>Material: acrylate</li>
-													</ul>
+													<div class="accordion" id="specificationsTabs">
+														<div class="card">
+															<div class="card-header" id="headingOne">
+																<h2 class="mb-0">
+																	<button class="btn text-white btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+																		Thông tin bộ phận và dịch vụ
+																	</button>
+																</h2>
+															</div>
+
+															<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#specificationsTabs">
+																<div class="card-body">
+																	[Coming soon]
+																</div>
+															</div>
+														</div>
+														<div class="card">
+															<div class="card-header" id="headingTwo">
+																<h2 class="mb-0">
+																	<button class="btn text-white btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+																		Tải xuống thông số kỹ thuật sản phẩm
+																	</button>
+																</h2>
+															</div>
+															<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#specificationsTabs">
+																<div class="card-body">
+																	<div class="row row-cols-1 row-cols-sm-2">
+																	<?php if (@$file_attach) {foreach ($file_attach as $item) {	?>
+																		<a href="<?=base_url('assets/uploads/'.$item->prodpath)?>" class="col d-flex align-self-center mb-2 wrap-item align-items-center" target="_blank">
+																			<span class="mr-1 file-icon">
+																				<?php $path_info = pathinfo($item->prodpath);$ext=$path_info['extension']; 
+																				if ($ext=='pdf') {?>
+																					<img src="<?=base_url('assets/img/icon-pdf.png')?>" width="24">
+																				<?php } else if ($ext=='dwg'){?>
+																					<img src="<?=base_url('assets/img/icon-dwg.png')?>" width="24">
+																				<?php } else {?>
+																					<img src="<?=base_url('assets/img/icon-pdf.png')?>" width="24">
+																				<?php } ?>
+																			</span>
+																			<span class="file-name"><?=@$item->prodname?></span>
+																		</a>	
+																	<?php }} ?>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="card">
+															<div class="card-header" id="headingThree">
+																<h2 class="mb-0">
+																	<button class="btn text-white btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+																		Video
+																	</button>
+																</h2>
+															</div>
+															<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#specificationsTabs">
+																<div class="card-body">
+																	[Coming soon]
+																</div>
+															</div>
+														</div>
+														<div class="card">
+															<div class="card-header" id="heading4">
+																<h2 class="mb-0">
+																	<button class="btn text-white btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+																		Tài liệu quảng cáo
+																	</button>
+																</h2>
+															</div>
+															<div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#specificationsTabs">
+																<div class="card-body">
+																	[Coming soon]
+																</div>
+															</div>
+														</div>
+													</div>
 													&nbsp;
 												</div>
 											</div>
@@ -147,8 +233,36 @@
 									</div>
 								</div>
 							</div>
+
 							<!-- related items -->
-							
+							<div class="row ashade-small-gap">
+								<div class="col-12 ">
+								<?php if($related_products) {?>
+									<div class="product-related ratio_square">
+										<h4 class="h5 title pt-1">Related Products</h4>
+										<div class="slide-6">
+										<?php foreach ($related_products as $item) {?>
+											<div class="product-box">
+												<div class="img-block">
+													<a href="<?=@base_url($item->type.'/products/'.$item->alias)?>" class="bg-size" style="background-image: url('<?=base_url($item->thumb)?>')"></a>
+												</div>
+												<div class="product-info product-content">
+													<a href="<?=@base_url($item->type.'/products/'.$item->alias)?>">
+														<h6><b>Mã SP:</b> <?=@$item->sku?></h6>
+														<h6><span class="text-dark"><b><?=@number_format($item->price,0,',','.')?> </b></span></h6>
+													</a>
+													<!--<div class="item-price">
+														<span itemprop="price" class="price amount"><h5>2.450.000 đ</h5></span>
+														<span class="old-price regular-price">2.550.000 đ</span>
+													</div>-->
+												</div>
+											</div>
+										<?php } ?>		
+										</div>
+									</div>
+								<?php } ?>
+								</div>
+							</div>
 							<!-- related items -->
 						</div>
 					</div>

@@ -12,6 +12,17 @@
                             <a href="<?=base_url('')?>">Home</a>
                         </li>
 						<li class="menu-item-has-children">
+                            <a href="#">Bathroom</a>
+                            <ul class="sub-menu">
+                            <?php foreach ($bathroom_cat as $item) {?>
+                                    <li><a href="<?=base_url('bathroom/products?cat_id='.$item->id)?>"><?=$item->title?></a></li>
+                                <?php } ?>
+                                <!-- <li><a href="<?=base_url('bathroom/products?cat_id=48')?>">Bồn tắm</a></li>
+                                <li><a href="<?=base_url('bathroom/products?cat_id=49')?>">Tủ chậu phòng tắm</a></li>
+                                <li><a href="<?=base_url('bathroom/products?cat_id=52')?>">Sen vòi bồn tắm</a></li> -->
+                            </ul>
+                        </li>
+						<li class="menu-item-has-children">
                             <a href="#">Kitchen</a>
                             <ul class="sub-menu">
                                 <?php foreach ($kitchen_cat as $item) {?>
@@ -19,16 +30,8 @@
                                 <?php } ?>
                             </ul>
                         </li>
-						<li class="menu-item-has-children">
-                            <a href="#">Bathroom</a>
-                            <ul class="sub-menu">
-                            <?php foreach ($bathroom_cat as $item) {?>
-                                    <li><a href="<?=base_url('bathroom/products?cat_id='.$item->id)?>"><?=$item->title?></a></li>
-                                <?php } ?>
-                            </ul>
-                        </li>
-						<li><a href="<?=base_url('bathroom/products?cat_id=48')?>">About Us</a></li>
-						<li><a href="<?=base_url('bathroom/products?cat_id=48')?>">Contacts</a></li>
+						<li><a href="<?=base_url('#')?>">About Us</a></li>
+						<li><a href="<?=base_url('#')?>">Contacts</a></li>
 						<li class="menu-item-has-children uws-languages" style="opacity: 1; transform: translate(0px, 0px);">
                             <a href="#" class="uws-lang-cs"><img src="/assets/img/flag-de.png" class="uws-img-flag uws-img-cs">DE</a>
                             <ul class="sub-menu">

@@ -173,7 +173,8 @@ class Products extends MY_Controller {
 				}
 				
 				// Load file_attach
-				$this->data['file_attach'] = json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'file_attach'),array(),true)->value);
+				$this->data['file_attach'] = @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'file_attach'),array(),true)->value;
+				$this->data['file_attach'] = json_decode($this->data['file_attach']);
 				$this->data['actual_image']	= json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'actual_image'),array(),true)->value);
 				@$this->data['circleview'] = array_reverse(json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'circleview'),array(),true)->value));
 				$this->data['video_attach']	= @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach'),array(),true)->value;
@@ -188,7 +189,7 @@ class Products extends MY_Controller {
 				}
 				
 				// Load related products
-				$this->data['related_products'] = $this->productsmodel->getRelatedProducts2($cat_chosen,$this->data['product_data']->price,8,'');
+				$this->data['related_products'] = $this->productsmodel->getRelatedProducts($cat_chosen,$this->data['product_data']->price,8,'');
 				
 				$this->data['title'] 							= $this->data['product_data']->title;
 				$this->data['meta_title']				= $this->data['product_data']->meta_title;

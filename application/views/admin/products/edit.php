@@ -94,6 +94,40 @@
 								<input type="text" class="form-control" name="videos" placeholder="https://www.youtube.com/watch?v=5bfUQc8beUw" value="<?=@$p_video_attach?>"/>
 							</div>
 						</div>
+						<div class="form-group" id="prod_variant">
+							<label class="col-sm-2 control-label">File đính kèm</label>
+							<div class="col-sm-10"><?php //print_r($pricingPackage);?>
+								<div class="variant">
+								<?php
+									$c = 0;
+									if (@count( $pricingPackage ) > 0 && is_array($pricingPackage)) {
+										foreach( $pricingPackage as $item ) {count( $pricingPackage );
+											if ( isset( $item->prodname ) ) {
+												printf( '
+													<div class="row package-item clearfix">
+														<div class="col-sm-5 col">
+															<input type="text" class="form-control" name="pricingPackage[%1$s][prodname]" value="%2$s" placeholder="Tên file"/>
+														</div>
+														<div class="col-sm-5 col">
+															<input type="text" class="form-control" name="pricingPackage[%1$s][prodpath]" id="prodpath_%3$s" value="%3$s" placeholder="File"/>
+														</div>
+														<div class="col-sm-1 col"><a href="/assets/filemanager/dialog.php?type=2&field_id=prodpath_%1$s&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Chọn file</a></div>
+														<div class="col-sm-1 col"><span class=""><a href="javascript:void(0);" class="btn btn-info btn-simple btn-nopadding btn-link remove-package2"><i class="fa fa-trash"></i></a></span></div>
+													</div>
+													',
+														$c, $item->prodname,$item->prodpath, 'Xóa'
+													);
+												$c = $c +1;
+											}
+										}
+									}
+								?>
+									<div id="output-package" class="clearfix"></div>
+								</div>
+							</div>
+							
+							<div class="col-sm-offset-2 col-sm-10"><a href="#" class="add_package btn btn-fill btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a></div>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Mô tả ngắn:</label>
 							<div class="col-sm-10">
@@ -223,23 +257,6 @@
 								</div>
 							</div>
 						</div><hr>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">File đính kèm</label>
-							<div class="col-sm-10">
-								<p><a href="/assets/filemanager/dialog.php?type=2&field_id=file_attach&relative_url=0&multiple=1&callback=responsive_filemanager_callback2" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Open Filemanager</a></p>
-								<input type="hidden" class="form-control" id="file_attach" value="" />
-								<div class="append_html">
-									<?php 
-										$file_attach = json_decode($file_attach);
-										if($file_attach) {foreach ($file_attach as $i=>$file) {
-									?>
-									<div class="rel"><p class="file_attach"><?=@$file?></p><span class="remove"><i class="fa fa-times"></i></span>
-										<input type="hidden" name="file_attach[]" value="<?=@$file?>">
-									</div>
-									<?php }} ?>
-								</div>
-							</div>
-						</div>
 						
 						<div class="form-group">
 							<label class="col-sm-2 control-label"></label>
@@ -257,6 +274,27 @@
 </div>
 	<script src="<?=base_url('assets/js/jquery.min.js')?>" type="text/javascript"></script>
 	<script type="text/javascript">
+		var $ =jQuery.noConflict();
+		// var $c = 0;
+		jQuery(document).ready(function($){
+			var count = <?php echo $c-1; ?>;
+			$(".add_package").click(function() {
+				count = count + 1;
+				$('#output-package').append('\
+					<div class="row package-item clearfix"> \
+						<div class="col-sm-5 col"><input type="text" class="form-control" name="pricingPackage['+count+'][prodname]" value="" placeholder="Tên file"/></div>\
+						<div class="col-sm-5 col"><input type="text" class="form-control" name="pricingPackage['+count+'][prodpath]" id="prodpath_'+count+'" value=""placeholder="File" readonly/></div>\
+						<div class="col-sm-1 col"><a href="/assets/filemanager/dialog.php?type=2&field_id=prodpath_'+count+'&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Chọn file</a></div>\
+						<div class="col-sm-1 col"><span class=""><a href="javascript:void(0);" class="btn btn-info btn-simple btn-nopadding btn-link remove-package2"><i class="fa fa-trash"></i></a></span></div>\
+					</div>');
+				return false;
+			});
+			$(document.body).on('click','.remove-package2',function() {
+				$(this).closest('div.package-item').remove();
+			});
+			
+		});
+		
 		// filemanager callback
 		function responsive_filemanager_callback(field_id){
 			var img_data = $('#'+field_id).val();
