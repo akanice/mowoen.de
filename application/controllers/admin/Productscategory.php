@@ -109,7 +109,7 @@ class ProductsCategory extends MY_Controller{
 
     public function edit($id) {
         $this->data['productcategory'] = $this->productscategorymodel->read(array('id'=>$id),array(),true);
-        $this->data['products'] = $this->productsmodel->getProductsByCategoryId($this->data['productcategory']->type,'',$id,'','','','');
+        $this->data['products'] = $this->productsmodel->getProductsByCategoryId($this->data['productcategory']->type,'',$id,'','','','','');
 		$this->load->model('productscombopickedmodel');
 		$this->data['products_picked'] = $this->productscombopickedmodel->read(array('cat_id'=>$id),array(),true);
 		if (!isset($this->data['products_picked'])) {$this->productscombopickedmodel->create(array('cat_id'=>$id));}
