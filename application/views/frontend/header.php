@@ -33,11 +33,11 @@
 						<li><a href="<?=base_url('#')?>">About Us</a></li>
 						<li><a href="<?=base_url('#')?>">Contacts</a></li>
 						<li class="menu-item-has-children uws-languages" style="opacity: 1; transform: translate(0px, 0px);">
-                            <a href="#" class="uws-lang-cs"><img src="/assets/img/flag-de.png" class="uws-img-flag uws-img-cs">DE</a>
+                            <a href="#" class="uws-lang-cs"><img src="/assets/img/flag-uk.png" class="uws-img-flag uws-img-cs">EN</a>
                             <ul class="sub-menu">
                                 <li class="menu-item-has-children">
-                                <a href="<?=base_url('en')?>" class="uws-lang-en">
-                                    <img src="/assets/img/flag-uk.png" class="uws-img-flag uws-img-uk">EN
+                                <a href="<?=base_url('')?>" class="uws-lang-de">
+                                    <img src="/assets/img/flag-de.png" class="uws-img-flag uws-img-uk">DE
                                 </a>
 
                                 </li>

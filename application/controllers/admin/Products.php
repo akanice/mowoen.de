@@ -138,7 +138,7 @@ class Products extends MY_Controller{
 		$this->loadData($id);
 		
 		if($this->input->post('submit') != null){
-			if ($this->input->post("image") && $this->input->post("image")!=($this->data['products']->image)) {
+			if ($this->input->post("image")) {
 				$image  = 'assets/uploads/'.substr(parse_url($this->input->post("image"), PHP_URL_PATH),0);
 				$data = pathinfo($image);
 				
@@ -166,7 +166,7 @@ class Products extends MY_Controller{
 						$thumb = $dir_thumb.$data['filename'].'_thumb.'.$data['extension'];
 					}
 				}
-			} else {$image = $this->data['products']->image;$thumb=$this->data['products']->thumb;}
+			} else {$thumb=$this->data['products']->thumb;}
 			
 			// Gallery
 			$gallery = array();

@@ -114,8 +114,11 @@ class Products extends MY_Controller{
 			// Create new product
 			$product_id = $this->productsmodel->create($data);
 			$this->productsmodel->update(array('alias'=>make_alias($this->input->post("title").'-'.$product_id)),array('id'=>$product_id));
+			
+			// File attach
+			$files = $this->input->post("pricingPackage");
 
-			$this->attachData($product_id, 'file_attach', json_encode($this->input->post("file_attach")));
+			$this->attachData($product_id, 'file_attach', json_encode($files));
 			$this->attachData($product_id, 'video_attach', $this->input->post("videos"));
 			$this->attachData($product_id, 'actual_image', json_encode($this->input->post("actual_image")));
 			$this->attachData($product_id, 'circleview', json_encode($this->input->post("circleview")));
@@ -135,33 +138,35 @@ class Products extends MY_Controller{
 		$this->loadData($id);
 		
 		if($this->input->post('submit') != null){
-			if ($this->input->post("image")) {$image  = 'assets/uploads/'.substr(parse_url($this->input->post("image"), PHP_URL_PATH),0);} else {$image ='';}
-			$data = pathinfo($image);
-			
-			//Create cover thumb
-			$this->load->library('upload_file');
-			$thumb = '';
-            if ($image != '') {
-				$dir_thumb = 'assets/uploads/thumb/images/products/';
-				if (!file_exists($dir_thumb) || !is_dir($dir_thumb)) mkdir($dir_thumb,0777,true);
-				$this->load->library('image_lib');
-				$config2 = array();
-				$config2['image_library'] = 'gd2';
-				$config2['source_image'] = $image;
-				$config2['new_image'] = $dir_thumb;
-				$config2['create_thumb'] = TRUE;
-				$config2['maintain_ratio'] = TRUE;
-				$config2['quality'] = '80%';
-				$config2['width'] = 400;
-				$config2['height'] = 400;
-				$this->image_lib->clear();
-				$this->image_lib->initialize($config2);
-				if(!$this->image_lib->resize()){
-					print $this->image_lib->display_errors();
-				}else{
-					$thumb = $dir_thumb.$data['filename'].'_thumb.'.$data['extension'];
+			if ($this->input->post("image")) {
+				$image  = 'assets/uploads/'.substr(parse_url($this->input->post("image"), PHP_URL_PATH),0);
+				$data = pathinfo($image);
+				
+				//Create cover thumb
+				$this->load->library('upload_file');
+				$thumb = '';
+				if ($image != '') {
+					$dir_thumb = 'assets/uploads/thumb/images/products/';
+					if (!file_exists($dir_thumb) || !is_dir($dir_thumb)) mkdir($dir_thumb,0777,true);
+					$this->load->library('image_lib');
+					$config2 = array();
+					$config2['image_library'] = 'gd2';
+					$config2['source_image'] = $image;
+					$config2['new_image'] = $dir_thumb;
+					$config2['create_thumb'] = TRUE;
+					$config2['maintain_ratio'] = TRUE;
+					$config2['quality'] = '80%';
+					$config2['width'] = 400;
+					$config2['height'] = 400;
+					$this->image_lib->clear();
+					$this->image_lib->initialize($config2);
+					if(!$this->image_lib->resize()){
+						print $this->image_lib->display_errors();
+					}else{
+						$thumb = $dir_thumb.$data['filename'].'_thumb.'.$data['extension'];
+					}
 				}
-			}
+			} else {$thumb=$this->data['products']->thumb;}
 			
 			// Gallery
 			$gallery = array();
@@ -201,8 +206,10 @@ class Products extends MY_Controller{
 
 			$this->productsmodel->update($data,array('id'=>$id));
 			
-			// File Attach
-			$this->attachData($id, 'file_attach', json_encode($this->input->post("file_attach")));
+			// File attach
+			$files = $this->input->post("pricingPackage");
+			$files = array_values($files);
+			$this->attachData($id, 'file_attach', json_encode($files));
 			$this->attachData($id, 'video_attach', $this->input->post("videos"));
 			$this->attachData($id, 'actual_image', json_encode($this->input->post("actual_image")));
 			$this->attachData($id, 'circleview', json_encode($this->input->post("circleview")));
@@ -276,10 +283,12 @@ class Products extends MY_Controller{
 				$this->tagstermmodel->create(array('type'=>'product','term_id'=>$product_id,'tag_id'=>$tags));
 			}
 			
-			$this->attachData($product_id, 'file_attach', json_encode($this->input->post("file_attach")));
+			$files = $this->input->post("pricingPackage");
+			$files = array_values($files);
+			$this->attachData($product_id, 'file_attach', json_encode($files));
 			$this->attachData($product_id, 'video_attach', $this->input->post("videos"));
 			$this->attachData($product_id, 'actual_image', json_encode($this->input->post("actual_image")));
-			$this->attachData($id, 'circleview', json_encode($this->input->post("circleview")));
+			$this->attachData($product_id, 'circleview', json_encode($this->input->post("circleview")));
 			
 			redirect(base_url() . "admin/products/edit/".$product_id);
 			exit();
@@ -306,7 +315,8 @@ class Products extends MY_Controller{
 		
 		// Extra data for product
 		$this->data['p_custom_data'] = @json_decode($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'custom_field'),array(),true)->value);
-		$this->data['file_attach'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'file_attach'),array(),true)->value);
+		$this->data['p_file_attach'] = @$this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'file_attach'),array(),true)->value;
+		$this->data['pricingPackage'] = json_decode($this->data['p_file_attach']);
 		$this->data['p_video_attach'] = @$this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'video_attach'),array(),true)->value;
 		$this->data['actual_image'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'actual_image'),array(),true)->value);
 		$this->data['circleview'] = @($this->productsattachmodel->read(array('product_id'=>$id,'attachdata'=>'circleview'),array(),true)->value);
