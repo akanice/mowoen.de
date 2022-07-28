@@ -69,7 +69,7 @@
 												<a class="btn btn-sm btn-primary btn-fill" href="<?=base_url('admin/products?type='.$type.'&cat='.$item->id)?>">Xem sản phẩm</a>
 											</td>
 											<td><?php if (@$item->type == 'bathroom') {echo '<span class="text-info">Nhà tắm</span>';} else {echo '<span class="text-warning">Nhà bếp</span>';}?></td>
-											<td style="text-align: center"><a href="<?=@base_url('admin/productscategory/edit/'.$item->id)?>" class="btn btn-fill btn-sm btn-info"><i class="fa fa-pencil"></i> Sửa</a> <a href="<?=@base_url('admin/productscategory/delete/'.$item->id.'?type='.$type)?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-fill btn-sm btn-warning"><i class="fa fa-trash"></i> Xóa</a></td>
+											<td style="text-align: center"><a href="<?=@base_url('admin/productscategory/edit/'.$item->id)?>" class="btn btn-fill btn-sm btn-info"><i class="fa fa-pencil"></i> Sửa</a> <a href="<?=@base_url('admin/productscategory/delete/'.$item->id)?>" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="btn btn-fill btn-sm btn-warning"><i class="fa fa-trash"></i> Xóa</a></td>
 										</tr>
 										<?php } ?>
 										<tr>

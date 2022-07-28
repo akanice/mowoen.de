@@ -14,7 +14,7 @@
 						<li class="menu-item-has-children">
                             <a href="#">Bathroom</a>
                             <ul class="sub-menu">
-								<?php foreach ($bathroom_cat as $item) {?>
+                            <?php foreach ($bathroom_cat as $item) {?>
                                     <li><a href="<?=base_url('bathroom/products?cat_id='.$item->id)?>"><?=$item->title?></a></li>
                                 <?php } ?>
                                 <!-- <li><a href="<?=base_url('bathroom/products?cat_id=48')?>">Bồn tắm</a></li>

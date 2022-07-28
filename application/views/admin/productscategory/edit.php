@@ -12,7 +12,7 @@
 								<a href="<?=base_url('admin')?>">Trang chủ</a>
 							</li>
 							<li>
-								<a href="<?=base_url('admin/productscategory')?>">Quản lý danh mục sản phẩm</a>
+								<a href="<?=base_url('admin/productscategory?type='.@$productcategory->type)?>">Quản lý danh mục sản phẩm</a>
 							</li>
 							<li class="active">
 								Sửa danh mục sản phẩm
@@ -34,10 +34,10 @@
 						<div class="content">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Tên</label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <input type="text" class="form-control" name="title" value="<?=@$productcategory->title?>" required="" />
                                 </div>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<select class="form-control" name="type">
 										<option value="bathroom" <?php if($productcategory->type=='bathroom'){echo 'selected="selected" ';}?>>Nhà tắm</option>
 										<option value="kitchen" <?php if($productcategory->type=='kitchen'){echo 'selected="selected" ';}?>>Nhà bếp</option>
@@ -121,7 +121,7 @@
 				</div>
 			
 				<div class="col-md-4">
-					<div class="card">
+					<!-- <div class="card">
 						<div class="header">
 							<h4 class="title">Sản phẩm có thể tạo combo</h4>
 						</div>
@@ -163,7 +163,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
             <!-- END PAGE CONTAINER-->
 			</form>

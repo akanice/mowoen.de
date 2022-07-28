@@ -1,11 +1,11 @@
 $(window).scroll(function() {	
 	// Sticky header
 	var windowWidth = window.innerWidth || $(window).width();
-	header_one = $("header .menu-header");
+	header_one = $("#ashade-header");
 	if (windowWidth >= 992) {
-		if ($("body").outerHeight() > $(window).innerHeight() + 300 && $(window).scrollTop() > 200) {
+		if ($("body").outerHeight() > $(window).innerHeight() + 300 && $(window).scrollTop() > 100) {
 			$(header_one).addClass("boutique-header_sticky");
-		} else if ($(window).scrollTop() <= 200) {
+		} else if ($(window).scrollTop() <= 100) {
 			$(header_one).removeClass("boutique-header_sticky");
 		}
 	}

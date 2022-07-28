@@ -10,7 +10,7 @@ html {
 }
 body {
     overflow-x: hidden;
-    background: #000000;
+    background: #161619;
     font-family: 'Quicksand', sans-serif;
     font-size: 16px;
     line-height: 28px;
@@ -37,7 +37,7 @@ body.has-spotlight:before {
     top: 0;
     width: 100vh;
     height: 100vh;
-    background: radial-gradient(ellipse at left top, #28282E 0%,#000000 70%);
+    background: radial-gradient(ellipse at left top, #28282E 0%,#161619 70%);
 }
 
 /* --- Overlays --- */
@@ -90,7 +90,7 @@ body.has-spotlight:before {
 	align-items: stretch;
 }
 .ashade-col {
-    margin: 0 20px;
+    /* margin: 0 20px; */
 }
 .ashade-col.align-top {
 	display: inline-flex;
@@ -433,7 +433,7 @@ h3 span {
 h1 {
     font-size: 60px;
     line-height: 65px;
-    margin: 0 0 34px 0;
+    margin: 0 0 15px 0;
 }
 .ashade-counter-label,
 h1 span {
@@ -511,7 +511,7 @@ h6 {
     margin: 0 0 15px 0;
 }
 h6 span {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 13px;
     margin: 0 0 0 0;
 }
@@ -753,6 +753,7 @@ header#ashade-header {
     width: 100%;
     z-index: 221;
     transition: z-index 0.5s, transform 0.5s;
+	background: #ffffff12;
 }
 body.no-header-padding .ashade-header-holder {
 	display: none;
@@ -762,7 +763,12 @@ header#ashade-header .ashade-header-inner {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 50px 50px 50px 50px;
+    padding: 10px 0;
+	width: 100%;
+}
+header#ashade-header.header.boutique-header_sticky {
+	background: #101010;
+	top: 0;
 }
 /* --- Logo --- */
 .ashade-logo {
@@ -924,7 +930,6 @@ nav.ashade-nav ul.main-menu li.current-menu-item > a,
 nav.ashade-nav ul.main-menu li.current-menu-ancestor > a {
     color: rgba(255,255,255,1);
 }
-
 
 /* 05. CONTENT
    ----------- */
@@ -1645,7 +1650,7 @@ body.ashade-aside-shown .ashade-home-link-wrap {
 .product-box > h5 span {
 	font-size: 12px;
 	margin: 5px 0 0 0;
-	color: #db9123;
+	color: #fff;
 }
 .ashade-album-item img {
 	width: 100%;
@@ -1689,7 +1694,7 @@ body.ashade-aside-shown .ashade-home-link-wrap {
 }
 .ashade-albums-template--carousel .ashade-albums-carousel-wrap .ashade-albums-carousel.is-medium {
 	top: 0;
-	padding: 25vh 0;
+	padding: 30vh 0 20vh;
 	height: 100vh;
 }
 .ashade-albums-template--carousel .ashade-albums-carousel-wrap div.ashade-album-item {
@@ -2724,7 +2729,7 @@ nav.ashade-nav ul li .ashade-aside-toggler i {
 .uws-eshop-detail .uws-content-text {
     /*color: white;*/
     text-align: left;
-    padding: 0px 20px;
+    padding: 0px 20px 0 35px;
 }
 
     .uws-eshop-detail .uws-content-text p > .ashade-button {
@@ -2977,15 +2982,14 @@ nav.ashade-nav ul.menu-header {
 	color: #9f9f9f;
 }
 .slider-nav .nav-item {
-    max-width: 90%;
-    border-radius: 0;
-    height: 5px;
-    transition: all .25s ease-in-out;
-    background: #fff;
-    opacity: .2;
+    /* max-width: 90%; */
+    /* border-radius: 0; */
+    /* height: 5px; */
+    /* transition: all .25s ease-in-out; */
+    /* background: #fff; */
+    /* opacity: .2; */
 }
 .slider-nav .slick-slide.slick-current.slick-active .nav-item {
-    background: #26a792;
     opacity: 1;
 }
 .filter_dimension .filter {
@@ -3003,7 +3007,10 @@ nav.ashade-nav ul.menu-header {
 }
 .breadcrumb, .breadcrumb a {
 	color: #9d9d9d;
-	font-size: 14px;
+	font-size: 16px;
+}
+.breadcrumb a.current-link {
+	color: #fff;
 }
 .slash-divider {
 	margin: 0 8px;
@@ -3018,8 +3025,12 @@ nav.ashade-nav ul.menu-header {
 	margin-bottom: 0;
 }
 .specs .accordion>.card>.card-header .btn {
-	border: 1px solid #f1f1f1;
+	border: 1px solid #5a5a5a;
 	border-radius: 0;
+	padding: 10px 15px;
+}
+.specs .accordion>.card>.card-header .btn:hover,.specs .accordion>.card>.card-header .btn:not(.collapsed) {
+	border: 1px solid #fff;
 }
 .card-header .btn {
 	position: relative;
@@ -3100,7 +3111,7 @@ nav.ashade-nav ul.menu-header {
     margin: auto;
 }
 .slider-nav .nav-item {
-	border: 1px solid #ddd;
+	border: 1px solid #484848;
     /* border-radius: 5px; */
     background-size: cover;
     background-position: center center;
@@ -3113,7 +3124,7 @@ nav.ashade-nav ul.menu-header {
     display: block;
 }
 .slider-nav .slick-slide.slick-current.slick-active .nav-item {
-	border: 1px solid #26a792;
+	border: 1px solid #fff;
 	opacity: 1;
 }
 .slick-track{
@@ -3133,4 +3144,23 @@ nav.ashade-nav ul.menu-header {
 }
 .slide-6 .slick-slide {
     margin: 0 10px;
+}
+.sku {
+	color: #fff;
+}
+.sub-heading {
+	font-size: 17px;
+    color: #515155;
+    line-height: 1;
+    text-transform: uppercase;
+}
+.video_play {
+	background: #fff;
+	cursor: pointer;
+}
+.btn-play-video {
+	position: absolute;
+    top: 28%;
+    left: 26%;
+    font-size: 50px;
 }

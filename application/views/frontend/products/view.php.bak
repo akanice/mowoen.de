@@ -17,8 +17,7 @@
 				slidesToScroll: 1,
 				arrows: false,
 				fade: true,
-				asNavFor: '.slider-nav',
-				autoplay: false,
+				asNavFor: '.slider-nav'
 			});
 			$('.slider-nav').slick({
 				vertical: false,
@@ -27,8 +26,7 @@
 				asNavFor: '.product-slick',
 				arrows: false,
 				dots: false,
-				focusOnSelect: true,
-				autoplay: false,
+				focusOnSelect: true
 			});
 		});
 	</script>
@@ -67,14 +65,14 @@
 					<div class="ashade-row">
 						<div class="ashade-col col-12">
 							<div class="row ashade-small-gap">
-								<div class="col-12 col-sm-6 uws-content-photo">
+								<div class="col-12 col-sm-5 uws-content-photo">
 									<?php if ((@$product_data->gallery) && @count(json_decode($product_data->gallery)) == 0) {?>
 										<img src="<?=@base_url($product_data->image)?>" class="img-holder p_detail_img">
 										<?php if ((@$circleview) && @count($circleview) != 0) { ?>
 											<div class="circleview"><a class="btncircle" data-toggle="modal" data-target="#featureModal2"><img src="<?=base_url('assets/img/360-degrees.png')?>"></a></div>
 										<?php } ?>
 									<?php } else { ?>
-										<div class="product-slick"><!-- Slider Main -->
+										<div class="product-slick">
 											<div>
 												<a href="<?=@base_url($product_data->image)?>" data-lightbox="roadtrip"><img src="<?=@base_url($product_data->image)?>" alt="" class="img-fluid"></a>
 											</div>
@@ -83,17 +81,9 @@
 												<a href="<?=@($item)?>" data-lightbox="roadtrip"><img src="<?=@($item)?>" alt="" class="img-fluid"></a>
 											</div>
 											<?php } ?>
-											<div class="d-flex justify-content-center align-items-center">
-												<div class="embed-responsive embed-responsive-4by3">
-													<video width="640" height="480" controls>
-														<source src="<?=@base_url('assets/uploads/'.$video_attach)?>" />
-														Your browser does not support the video tag.
-													</video>
-												</div>
-											</div>
 										</div>
 										<div class="row">
-											<div class="col-md-10 offset-md-1 col-12 col-slick"><!-- Slider Thumb -->
+											<div class="col-md-10 offset-md-1 col-12 col-slick">
 												<div class="slider-nav ratio_square">
 													<div>
 														<div class="nav-item thumb bg-size" style="background-image:url('<?=@base_url($product_data->thumb)?>')"></div>
@@ -103,9 +93,6 @@
 														<div class="nav-item thumb bg-size" style="background-image:url('<?=@$item?>')"></div>
 													</div>
 													<?php } ?>
-													<div>
-														<div class="nav-item thumb bg-size position-relative video_play" data-toggle="modal" data-target="#modalVideo"><span class="btn-play-video"><i class="fab fa-youtube"></i></span></div>
-													</div>
 												</div>
 											</div>
 										</div>
@@ -131,7 +118,7 @@
 									</div>
 								</div>
 						
-								<div class="col-12 col-sm-6 uws-content-text">
+								<div class="col-12 col-sm-7 uws-content-text">
 									<h3 class="product-title"><?=@$product_data->title?></h3>
 									<div class="product-data">
 										<p class="product-articlenumbers">
@@ -295,22 +282,6 @@
 				</section>
 			</div>
 	
-
-	<!-- <div class="modal fade" id="modalVideo" tabindex="-1" aria-labelledby="modalVideoLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="embed-responsive embed-responsive-21by9">
-						<video width="640" height="480" controls>
-							<source src="<?=@base_url('assets/uploads/'.$video_attach)?>" />
-							Your browser does not support the video tag.
-						</video>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
 	<script>
 	let stopScrolling = false;
 

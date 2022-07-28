@@ -36,7 +36,7 @@ class Products extends MY_Controller{
         
         if(($this->data['name'] != "") or ($this->data['cat'] != "")){
 			$config['suffix'] = $config['suffix']. '&name='.urlencode($this->data['name']).'&cat='.urlencode($this->data['cat']);
-			list($this->data['page_links'],$start) = $this->productsmodel->pagination('admin/products/',$config['suffix'],$total,$per_page,3);
+			list($this->data['page_links'],$start) = $this->productsmodel->pagination('admin/products/'.$this->data['type'],$config['suffix'],$total,$per_page,3);
             $this->data['list'] = $this->productsmodel->getListProducts($type,$this->data['name'],$this->data['cat'],$per_page,$start);
         }else{
 			list($this->data['page_links'],$start) = $this->productsmodel->pagination('admin/products/',$config['suffix'],$total,$per_page,3);

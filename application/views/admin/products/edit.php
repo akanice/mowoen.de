@@ -7,12 +7,22 @@
 						<h3 class="page-title">
 							Quản lý sản phẩm
 						</h3>
+						<?php 
+							@$cat_array = $products->categoryid;
+							@$cat_alias = $this->productscategorymodel->read(array('id'=>$cat_array[0]),array(),true)->alias;
+							@$cat_title = $this->productscategorymodel->read(array('id'=>$cat_array[0]),array(),true)->title;
+							$type = $products->type;
+							$post_type = 'products';
+						?>
 						<ul class="breadcrumb">
 							<li>
 								<a href="<?=base_url('admin')?>">Trang chủ</a>
 							</li>
 							<li>
 								<a href="<?=base_url('admin/products')?>">Quản lý sản phẩm</a>
+							</li>
+							<li>
+								<a href="<?=base_url('admin/products?type='.$type.'&name=&cat='.$cat_array[0])?>"><?=$cat_title?></a>
 							</li>
 							<li class="active">
 								Sửa sản phẩm
@@ -29,12 +39,7 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="header">
-						<?php 
-							@$cat_array = $products->categoryid;
-							@$cat_alias = $this->productscategorymodel->read(array('id'=>$cat_array[0]),array(),true)->alias;
-							$type = $products->type;
-							$post_type = 'products';
-						?>
+						
 						<h4 class="title">Sửa thông tin sản phẩm <a href="<?=base_url($type.'/'.$post_type.'/'.$products->alias)?>" class="btn btn-sm btn-fill btn-warning" target="_blank">Xem</a> <a href="<?=@base_url('admin/products/add/')?>" class="btn btn-sm btn-fill btn-success" target="_blank"><i class="fa fa-plus"></i> Thêm mới</a></h4>
 					</div>
 					<div class="content">
@@ -91,9 +96,12 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Link video</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="videos" placeholder="https://www.youtube.com/watch?v=5bfUQc8beUw" value="<?=@$p_video_attach?>"/>
-							</div>
+							<input type="text" class="form-control" name="videos" id="videos" value="<?=@$p_video_attach?>" readonly />
+							<p><a href="/assets/filemanager/dialog.php?type=3&field_id=videos&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Thêm video</a></p>
+							<!-- <input type="text" class="form-control" name="videos" placeholder="https://www.youtube.com/watch?v=5bfUQc8beUw"/> -->
 						</div>
+						</div>
+						
 						<div class="form-group" id="prod_variant">
 							<label class="col-sm-2 control-label">File đính kèm</label>
 							<div class="col-sm-10"><?php //print_r($pricingPackage);?>
@@ -109,7 +117,7 @@
 															<input type="text" class="form-control" name="pricingPackage[%1$s][prodname]" value="%2$s" placeholder="Tên file"/>
 														</div>
 														<div class="col-sm-5 col">
-															<input type="text" class="form-control" name="pricingPackage[%1$s][prodpath]" id="prodpath_%3$s" value="%3$s" placeholder="File"/>
+															<input type="text" class="form-control" name="pricingPackage[%1$s][prodpath]" id="prodpath_%1$s" value="%3$s" placeholder="File"/>
 														</div>
 														<div class="col-sm-1 col"><a href="/assets/filemanager/dialog.php?type=2&field_id=prodpath_%1$s&relative_url=1&multiple=0" class="btn btn-sm btn-fill btn-success iframe-btn" type="button">Chọn file</a></div>
 														<div class="col-sm-1 col"><span class=""><a href="javascript:void(0);" class="btn btn-info btn-simple btn-nopadding btn-link remove-package2"><i class="fa fa-trash"></i></a></span></div>

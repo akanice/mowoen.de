@@ -1,11 +1,11 @@
 	
-	<!-- Transition Object -->
+	<!-- Transition Object
     <div class="ashade-page-title-wrap">
         <h1 class="ashade-page-title text-capitalize">
             <span>Mowöen</span>
             <?=@$category_data->title?>
         </h1>
-    </div>
+    </div> -->
 
 	<main class="ashade-content-wrap">
 		<div class="ashade-content-scroll">
@@ -14,7 +14,7 @@
 					<div class="ashade-row">
 						<div class="ashade-col col-12">
 							<h1 class="text-center d-none d-sm-block"><?=@$category_data->title?></h1>
-							<p class="ashade-intro">Nếu bạn yêu thích thiết kế trong phòng tắm cũng như nhà bếp và nhận ra tầm quan trọng của chất lượng sản phẩm, thì đây là nơi phù hợp nhất cho bạn. Bạn sẽ tìm thấy vô số sản phẩm cao cấp cho vòi hoa sen, phòng tắm và nhà bếp với Mowöen.</p>
+							<p class="ashade-intro">If you love the design in the bathroom as well as the kitchen and realize the importance of product quality, then this is the best place for you. You will find countless premium products for showers, bathrooms and kitchens with Mowöen.</p>
 						</div>
 					</div>
 				</section>
@@ -29,7 +29,7 @@
 							?>
 							<div class="filter_dimension">
 								<select class="form-control filter" name="brand_alias" id="dynamic_select">
-									<option value="<?=base_url($type.'/products/').'?cat_id='.urlencode(@$p_cat_id).'&dimension='?>" <?php if($p_dimension == '') {echo 'selected';}?>>Tất cả kích thước</option>
+									<option value="<?=base_url($type.'/products/').'?cat_id='.urlencode(@$p_cat_id).'&dimension='?>" <?php if($p_dimension == '') {echo 'selected';}?>>All dimensions</option>
 									<?php foreach ($list_dimension as $item) {?>
 										<option value="<?=base_url($type.'/products/').'?cat_id='.urlencode(@$p_cat_id).'&dimension='.urlencode(@$item->dimension)?>" <?php if($p_dimension == $item->dimension) {echo 'selected';}?>>
 											<?=$item->dimension?>
@@ -52,7 +52,7 @@
 										<a href="<?=@base_url($item->type.'/products/'.$item->alias)?>" class="bg-size" style="background-image: url('<?=base_url($item->thumb)?>')"></a>
 									</div>
 									<h5>
-										<span><b class="text-white-50">SKU: </b><?=@$item->sku?></span>
+										<span><b class="text-white-50">Model: </b><?=@$item->sku?></span>
 										<a href="<?=@base_url($item->type.'/products/'.$item->alias)?>" class="ashade-album-item__link"><?=@$item->title?></a>
 									</h5>
 									<a href="<?=@base_url($item->type.'/products/'.$item->alias)?>" class="ashade-album-item__link"></a>

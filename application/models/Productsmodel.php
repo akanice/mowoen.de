@@ -130,6 +130,7 @@ class ProductsModel extends MY_Model {
 		}
 		if ($title) {
 			$this->db->like('products.title', $title);
+			$this->db->or_like('products.sku', $title);
 		}
 		if($category != ""){
 			$this->db->like('categoryid','"'.$category.'"');
@@ -150,13 +151,14 @@ class ProductsModel extends MY_Model {
     }
 	
 	public function getRelatedProducts($category,$limit,$offset){
-		$this->db->where('products.featured',1);
-		$this->db->where('products.dimension!=','');
-		$this->db->order_by('id','RANDOM');
+		$this->db->select('products.*');
+		// $this->db->where('products.featured',1);
+		// $this->db->where('products.dimension!=','');
 		
 		if($category != ""){
 			$this->db->like('categoryid','"'.$category.'"');
 		}
+		$this->db->order_by('id','RANDOM');
 		if ($limit != "") {
             $query = $this->db->get('products', $limit, $offset);
         } else {
@@ -187,7 +189,6 @@ class ProductsModel extends MY_Model {
         } else {
 			$query = $this->db->get('products');
 		}
-		
 		if($query->num_rows() > 0)  {
 			$data = $query->result();
 			return $data;

@@ -179,17 +179,17 @@ class Products extends MY_Controller {
 				@$this->data['circleview'] = array_reverse(json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'circleview'),array(),true)->value));
 				$this->data['video_attach']	= @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach'),array(),true)->value;
 
-				// Display video youtube
-				if ($this->data['video_attach']) {
-					$arr_video = explode(",",$this->data['video_attach']);
-					foreach ($arr_video as $url) {
-						parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
-						$this->data['id_youtube'][] = $my_array_of_vars['v'];
-					}
-				}
+				// // Display video youtube
+				// if ($this->data['video_attach']) {
+				// 	$arr_video = explode(",",$this->data['video_attach']);
+				// 	foreach ($arr_video as $url) {
+				// 		parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
+				// 		$this->data['id_youtube'][] = $my_array_of_vars['v'];
+				// 	}
+				// }
 				
 				// Load related products
-				$this->data['related_products'] = $this->productsmodel->getRelatedProducts($cat_chosen,$this->data['product_data']->price,8,'');
+				$this->data['related_products'] = $this->productsmodel->getRelatedProducts($cat_chosen,8,'');
 				
 				$this->data['title'] 							= $this->data['product_data']->title;
 				$this->data['meta_title']				= $this->data['product_data']->meta_title;
@@ -219,10 +219,11 @@ class Products extends MY_Controller {
 		if (isset($item) and ($item) != '') {
 			$this->data['new_data'] = $this->newsmodel->read(array('alias'=>$item),array(),true);
 			if ($this->data['new_data']) {
-				$cat_chosen = json_decode($this->data['new_data']->categoryid)[0];
+				// $cat_chosen = json_decode($this->data['new_data']->categoryid)[0];
+				// print_r($this->data['new_data']);die();
 				
 				// Load related products
-				$this->data['related_news'] = $this->newsmodel->getRelatedNews($type,$post_type,$this->data['new_data']->id,$cat_chosen,8);
+				// $this->data['related_news'] = $this->newsmodel->getRelatedNews($type,$post_type,$this->data['new_data']->id,$cat_chosen,8);
 				
 				$this->data['title'] 							= $this->data['new_data']->title;
 				$this->data['meta_title']				= $this->data['new_data']->meta_title;
