@@ -139,33 +139,35 @@ class Products extends MY_Controller{
 		$this->loadData($id);
 		
 		if($this->input->post('submit') != null){
-			if ($this->input->post("image")) {$image  = 'assets/uploads/'.substr(parse_url($this->input->post("image"), PHP_URL_PATH),0);} else {$image ='';}
-			$data = pathinfo($image);
-			
-			//Create cover thumb
-			$this->load->library('upload_file');
-			$thumb = '';
-            if ($image != '') {
-				$dir_thumb = 'assets/uploads/thumb/images/products/';
-				if (!file_exists($dir_thumb) || !is_dir($dir_thumb)) mkdir($dir_thumb,0777,true);
-				$this->load->library('image_lib');
-				$config2 = array();
-				$config2['image_library'] = 'gd2';
-				$config2['source_image'] = $image;
-				$config2['new_image'] = $dir_thumb;
-				$config2['create_thumb'] = TRUE;
-				$config2['maintain_ratio'] = TRUE;
-				$config2['quality'] = '80%';
-				$config2['width'] = 400;
-				$config2['height'] = 400;
-				$this->image_lib->clear();
-				$this->image_lib->initialize($config2);
-				if(!$this->image_lib->resize()){
-					print $this->image_lib->display_errors();
-				}else{
-					$thumb = $dir_thumb.$data['filename'].'_thumb.'.$data['extension'];
+			if ($this->input->post("image")) {
+				$image  = 'assets/uploads/'.substr(parse_url($this->input->post("image"), PHP_URL_PATH),0);
+				$data = pathinfo($image);
+				
+				//Create cover thumb
+				$this->load->library('upload_file');
+				$thumb = '';
+				if ($image != '') {
+					$dir_thumb = 'assets/uploads/thumb/images/products/';
+					if (!file_exists($dir_thumb) || !is_dir($dir_thumb)) mkdir($dir_thumb,0777,true);
+					$this->load->library('image_lib');
+					$config2 = array();
+					$config2['image_library'] = 'gd2';
+					$config2['source_image'] = $image;
+					$config2['new_image'] = $dir_thumb;
+					$config2['create_thumb'] = TRUE;
+					$config2['maintain_ratio'] = TRUE;
+					$config2['quality'] = '80%';
+					$config2['width'] = 400;
+					$config2['height'] = 400;
+					$this->image_lib->clear();
+					$this->image_lib->initialize($config2);
+					if(!$this->image_lib->resize()){
+						print $this->image_lib->display_errors();
+					}else{
+						$thumb = $dir_thumb.$data['filename'].'_thumb.'.$data['extension'];
+					}
 				}
-			}
+			} else {$thumb=$this->data['products']->thumb;}
 			
 			// Gallery
 			$gallery = array();
