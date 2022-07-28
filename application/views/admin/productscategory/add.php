@@ -7,12 +7,13 @@
 						<h3 class="page-title">
 							Quản lý danh mục sản phẩm
 						</h3>
+						<?php $type = $this->input->get('type');?>
 						<ul class="breadcrumb">
 							<li>
 								<a href="<?=base_url('admin')?>">Trang chủ</a>
 							</li>
 							<li>
-								<a href="<?=base_url('admin/productscategory')?>">Quản lý danh mục sản phẩm</a>
+								<a href="<?=base_url('admin/productscategory?type='.@$type)?>">Quản lý danh mục sản phẩm</a>
 							</li>
 							<li class="active">
 								Thêm mới danh mục sản phẩm
@@ -34,15 +35,15 @@
 						<div class="widget-body content">                        
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
-								<div class="col-sm-4">
+								<div class="col-sm-5">
 									<input type="text" class="form-control" name="title" required="" />
 								</div>
-								<label class="col-sm-2 control-label">Loại</label>
-								<div class="col-sm-4">
-                                    <select class="form-control" name="type">
-                                        <option value="bathroom" selected>Nhà tắm</option>
-                                        <option value="kitchen">Nhà Bếp</option>
+								<div class="col-sm-5">
+                                    <select class="form-control" name="type2" disabled>
+                                        <option value="bathroom" <?php if (@$type==='bathroom') {echo 'selected';} else {echo 'disabled';}?>>Nhà tắm</option>
+                                        <option value="kitchen" <?php if (@$type==='kitchen') {echo 'selected';} else {echo 'disabled';}?>>Nhà Bếp</option>
                                     </select>
+									<?php if ($type) {?><input type="hidden" value="<?=$type?>" name="type" /><?php } ?>
                                 </div>
 							</div>
 							<div class="form-group">
@@ -140,7 +141,7 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="card">
+					<!-- <div class="card">
 						<div class="content">
 							<div class="form-group">
 								<label class="col-sm-12">Custom Field</label>
@@ -153,7 +154,7 @@
 								<div class="col-sm-12"><a href="#" class="add_package btn btn-fill btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a></div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</form>
         </div>

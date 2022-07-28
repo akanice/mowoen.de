@@ -161,6 +161,7 @@ class MY_Model extends CI_Model {
         $config['per_page'] = $per_page;
         $config['num_links'] = 5;
         $config['use_page_numbers'] = TRUE;
+		$config['first_url'] = base_url().$base_url.$suffix;
 		 $config["num_tag_open"] = "<li class='pagination__item '>";
         $config["num_tag_close"] = "</li>";
         $config["cur_tag_open"] = "<li class='pagination__item active'>";

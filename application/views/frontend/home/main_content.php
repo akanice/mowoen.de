@@ -5,7 +5,8 @@
 			<section class="ashade-section" style="margin-top:40px;">
 				<div class="ashade-row">
 					<div class="ashade-col col-12 align-center">
-						<h1><span>Design from Deutschland, made in EU</span> Mowoen.de</h1>
+						<h1><span>Design from Deutschland</span> Mowoen.de</h1>
+						<h2 class="sub-heading">made in EU</h2>
 					</div>
 				</div>
 			</section>

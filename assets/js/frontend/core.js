@@ -562,7 +562,7 @@
  
      // Header Holder
      $ashade_header_holder = jQuery('<div class="ashade-header-holder"></div>');
-     $ashade_header_holder.height($ashade_header.height()).prependTo($ashade_scroll);
+     $ashade_header_holder.height($ashade_header.height() + 120).prependTo($ashade_scroll);
  
      // Set Logo Size
     //  if (jQuery('a.ashade-logo').length) {
@@ -1268,6 +1268,16 @@
  }
  
  ashade.loading = function () {
+    gsap.fromTo('.header', 0.5, {
+        y: 0,
+        opacity: 0,
+    },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            delay: 0.5,
+        });
      // Load Page Title and Guides
      if (jQuery('.ashade-page-title-wrap:not(.is-inactive)').length) {
          gsap.to('.ashade-page-title-wrap:not(.is-inactive)', 0.5, {

@@ -29,12 +29,12 @@
 	</div><!-- .ashade-content-scroll -->
 	</main>
     
-    <div class="ashade-to-top-wrap ashade-back-wrap">
+    <!-- <div class="ashade-to-top-wrap ashade-back-wrap">
         <div class="ashade-back is-to-top">
             <span>Back to</span>
             <span>Top</span>
         </div>
-    </div>
+    </div> -->
 	
 	<!-- Right Menu -->
 	<aside id="ashade-aside">

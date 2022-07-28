@@ -87,7 +87,7 @@
 				</li>
 				
 				<?php $type=$this->input->get('type');$post_type=$this->input->get('post_type');?>
-				<li class="<?php if (($type == 'bathroom') and (($suffix_uri == 'newscategory') or ($suffix_uri == 'news') or ($suffix_uri == 'pages'))) echo 'active';?>">
+				<!-- <li class="<?php if (($type == 'bathroom') and (($suffix_uri == 'newscategory') or ($suffix_uri == 'news') or ($suffix_uri == 'pages'))) echo 'active';?>">
 					<a data-toggle="collapse" href="#componentsBath">
 						<i class="pe-7s-keypad"></i>
 						<p>Nhà tắm
@@ -103,32 +103,53 @@
 				</li>
 				
 				<li class="<?php if (($type == 'kitchen') and (($suffix_uri == 'newscategory') or ($suffix_uri == 'news') or ($suffix_uri == 'pages'))) echo 'active';?>">
-					<a data-toggle="collapse" href="#componentsKitchen">
+					<a data-toggle="collapse" href="#componentsBathroom">
 						<i class="pe-7s-keypad"></i>
 						<p>Nhà bếp
 						   <b class="caret"></b>
 						</p>
 					</a>
-					<div class="collapse <?php if (($type == 'kitchen') and (($suffix_uri == 'newscategory') or ($suffix_uri == 'news') or ($suffix_uri == 'pages'))) echo 'in';?>" id="componentsKitchen">
+					<div class="collapse <?php if (($type == 'kitchen') and (($suffix_uri == 'newscategory') or ($suffix_uri == 'news') or ($suffix_uri == 'pages'))) echo 'in';?>" id="componentsBathroom">
 						<ul class="nav">
 							<li class="<?php if ($suffix_uri == 'news' and ($post_type == 'inspiration')) echo 'active'?>"><a href="<?=base_url('admin/news?type=kitchen&post_type=inspiration')?>">Cảm hứng</a></li>
 							<li class="<?php if ($suffix_uri == 'news' and ($post_type == 'guide')) echo 'active'?>"><a href="<?=base_url('admin/news?type=kitchen&post_type=guide')?>">Hướng dẫn</a></li>
 						</ul>
 					</div>
-				</li>
+				</li> -->
 				
-				<li class="<?php if (($suffix_uri == 'products') or ($suffix_uri == 'productscategory')) echo 'active';?>">
-					<a data-toggle="collapse" href="#products">
-						<i class="pe-7s-joy"></i>
-						<p>Sản phẩm
+				<li class="<?php if (((($suffix_uri == 'products') or ($suffix_uri == 'productscategory')) && ($type=='bathroom'))
+				or (($suffix_uri == 'news') && ($type=='bathroom') && (($post_type == 'inspiration') or ($post_type=='guide')))) echo 'active';?>">
+					<a data-toggle="collapse" href="#componentsBathroom">
+						<i class="pe-7s-keypad"></i>
+						<p>Nhà tắm
 						   <b class="caret"></b>
 						</p>
 					</a>
-					<div class="collapse <?php if (($suffix_uri == 'products') or ($suffix_uri == 'productscategory') or ($suffix_uri == 'videos')) echo 'in';?>" id="products">
+					<div class="collapse <?php if (((($suffix_uri == 'products') or ($suffix_uri == 'productscategory')) && ($type=='bathroom')) or (($suffix_uri == 'news') && ($type=='bathroom') && (($post_type == 'inspiration') or ($post_type=='guide')))) echo 'in';?>" id="componentsBathroom">
 						<ul class="nav">
-							<li class="<?php if ($suffix_uri == 'productscategory') echo 'active'?>"><a href="<?=base_url('admin/productscategory')?>">Danh mục sản phẩm</a></li>
-							<li class="<?php if ($suffix_uri == 'products') echo 'active'?>"><a href="<?=base_url('admin/products?type=bathroom')?>">Sản phẩm nhà tắm</a></li>
-							<li class="<?php if ($suffix_uri == 'products') echo 'active'?>"><a href="<?=base_url('admin/products?type=kitchen')?>">Sản phẩm nhà bếp</a></li>
+							<li class="<?php if ($suffix_uri == 'productscategory') echo 'active'?>"><a href="<?=base_url('admin/productscategory?type=bathroom')?>">Sản phẩm</a></li>
+							<!-- <li class="<?php if ($suffix_uri == 'products') echo 'active'?>"><a href="<?=base_url('admin/products?type=bathroom')?>">Sản phẩm</a></li> -->
+							<li class="<?php if ($suffix_uri == 'news' and ($post_type == 'inspiration')) echo 'active'?>"><a href="<?=base_url('admin/news?type=bathroom&post_type=inspiration')?>">Cảm hứng</a></li>
+							<li class="<?php if ($suffix_uri == 'news' and ($post_type == 'guide')) echo 'active'?>"><a href="<?=base_url('admin/news?type=bathroom&post_type=guide')?>">Hướng dẫn</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<li class="<?php if (((($suffix_uri == 'products') or ($suffix_uri == 'productscategory')) && ($this->input->get('type')=='kitchen'))
+				or (($suffix_uri == 'news') && ($this->input->get('type')=='kitchen') && (($post_type == 'inspiration') or ($post_type=='guide')))) echo 'active';?>">
+					<a data-toggle="collapse" href="#componentKitchen">
+						<i class="pe-7s-joy"></i>
+						<p>Nhà bếp
+						   <b class="caret"></b>
+						</p>
+					</a>
+					<div class="collapse <?php if (((($suffix_uri == 'products') or ($suffix_uri == 'productscategory')) && ($this->input->get('type')=='kitchen'))
+				or (($suffix_uri == 'news') && ($this->input->get('type')=='kitchen') && (($post_type == 'inspiration') or ($post_type=='guide')))) echo 'in';?>" id="componentKitchen">
+						<ul class="nav">
+							<li class="<?php if ($suffix_uri == 'productscategory') echo 'active'?>"><a href="<?=base_url('admin/productscategory?type=kitchen')?>">Sản phẩm</a></li>
+							<!-- <li class="<?php if ($suffix_uri == 'products') echo 'active'?>"><a href="<?=base_url('admin/products?type=kitchen')?>">Sản phẩm</a></li> -->
+							<li class="<?php if ($suffix_uri == 'news' and ($post_type == 'inspiration')) echo 'active'?>"><a href="<?=base_url('admin/news?type=kitchen&post_type=inspiration')?>">Cảm hứng</a></li>
+							<li class="<?php if ($suffix_uri == 'news' and ($post_type == 'guide')) echo 'active'?>"><a href="<?=base_url('admin/news?type=kitchen&post_type=guide')?>">Hướng dẫn</a></li>
 						</ul>
 					</div>
 				</li>

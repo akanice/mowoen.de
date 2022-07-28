@@ -55,7 +55,14 @@
 											<td width=""></td>
 											<td width=''><input type="text" class="form-control" placeholder="Tên" name="name" value="<?=@$name?>"></td>
 											<td width=""></td>
-											<td width=""></td>
+											<td width="">
+												<select name="cat" class="form-control">
+													<option value="">Tất cả</option>
+													<?php if(@$productcategory) {foreach ($productcategory as $i) {?>
+														<option value="<?=$i->id?>" <?php if($i->id==@$cat){echo 'selected="selected" ';}?>><?=$i->title?></option>	
+													<?php }} ?>
+												</select>
+											</td>
 											<td width=""></td>
 											<td width=""></td>
 											<td width='' style="text-align: center"><button type="submit" class="btn btn-default btn-fill">Tìm kiếm</button></td>
@@ -66,15 +73,27 @@
 										<tr class="odd gradeX">
 											<td><?=@$item->id?></td>
 											<td><img src="<?=@site_url($item->thumb)?>" style="height:20px"></td>
-											<td><?=@$item->title?> <a href="<?=@base_url($item->type.'/products/'.$item->alias)?>" class="btn btn-sm btn-fill btn-primary" target="_blank">Xem</a></td>
+											<td><?=@$item->title?> - <small class="text-danger"><?=@$item->sku?></small> <a href="<?=@base_url($item->type.'/products/'.$item->alias)?>" class="btn btn-sm btn-fill btn-primary" target="_blank">Xem</a></td>
 											<td><?php if (@$item->type == 'bathroom') {echo '<span class="text-info">Nhà tắm</span>';} else {echo '<span class="text-warning">Nhà bếp</span>';}?></td>
-											<td><?=@$item->cat_name?></td>
+											<td>
+												<?php foreach (json_decode($item->categoryid) as $c) {
+													$c_data = $this->productscategorymodel->read(array('id'=>$c),array(),true);?>
+													<a href="<?=base_url('admin/products?type='.$type.'&cat='.$c_data->id)?>">
+														<?php
+															echo $c_data->title;
+														?>
+													</a>
+												<?php }?>	
+											</td>
 											<td><?php if ($item->featured == 1) {echo '<i class="fa fa-check"></i>';}?></td>
-											<td><?=@$item->sale_price?> - <span style="text-decoration: line-through"><small><?=@$item->price?></small></span></td>
+											<td>
+												<!-- <?=@$item->sale_price?> - <span style="text-decoration: line-through"> -->
+												<small><?=number_format(@$item->price,0,',','.');?></small></span>
+											</td>
 											<td style="text-align: center">
 												<a href="<?=@base_url('admin/products/edit/'.$item->id)?>" class="btn btn-fill btn-sm btn-info"><i class="fa fa-pencil"></i> Sửa</a>
 												<a href="<?=@base_url('admin/products/duplicate/'.$item->id)?>" class="btn btn-fill btn-sm btn-success"><i class="fa fa-pencil"></i> Duplicate</a>
-												<a href="<?=@base_url('admin/products/delete/'.$item->id)?>" class="btn btn-fill btn-sm btn-warning" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" ><i class="fa fa-trash"></i> Xóa</a></td>
+												<a href="<?=@base_url('admin/products/delete/'.$item->id.'?type='.$type)?>" class="btn btn-fill btn-sm btn-warning" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" ><i class="fa fa-trash"></i> Xóa</a></td>
 										</tr>
 										<?php } ?>
 									</tbody>

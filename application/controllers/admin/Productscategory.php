@@ -19,7 +19,8 @@ class ProductsCategory extends MY_Controller{
 	
     public function index(){
         $this->data['title']    = 'Quản lý danh mục sản phẩm';
-        $total = $this->productscategorymodel->readCount(array('title'=>'%'.$this->input->get('name').'%'));
+        $this->data['type'] = $type = $this->input->get('type');
+        $total = $this->productscategorymodel->readCount(array('title'=>'%'.$this->input->get('name').'%','type'=>@$type));
         $this->data['name'] = $this->input->get('name');
         if($this->data['name'] != ""){
             $config['suffix'] = '?name='.urlencode($this->data['name']);
@@ -29,7 +30,7 @@ class ProductsCategory extends MY_Controller{
         $config['base_url'] = base_url() . 'admin/productscategory/';
         $config['total_rows'] = $total;
         $config['uri_segment'] = 3;
-        $config['per_page'] = 10;
+        $config['per_page'] = 20;
         $config['num_links'] = 5;
         $config['use_page_numbers'] = TRUE;
         $config["num_tag_open"] = "<p class='paginationLink'>";
@@ -54,9 +55,9 @@ class ProductsCategory extends MY_Controller{
         $start = ($page_number - 1) * $config['per_page'];
         $this->data['page_links'] = $this->pagination->create_links();
         if($this->data['name'] != ""){
-            $this->data['list'] = $this->productscategorymodel->read(array('title'=>'%'.$this->input->get('name').'%'),array('id'=>false),false,$config['per_page'],$start);
+            $this->data['list'] = $this->productscategorymodel->read(array('title'=>'%'.$this->input->get('name').'%','type'=>@$type),array('id'=>false),false,$config['per_page'],$start);
         }else{
-            $this->data['list'] = $this->productscategorymodel->read(array(),array('id'=>false),false,$config['per_page'],$start);
+            $this->data['list'] = $this->productscategorymodel->read(array('type'=>@$type),array('id'=>false),false,$config['per_page'],$start);
         }
         $this->data['base'] = site_url('admin/productscategory/');
         $this->load->view('admin/common/header',$this->data);
@@ -65,7 +66,8 @@ class ProductsCategory extends MY_Controller{
     }
 
     public function add(){
-		$this->data['parents'] = $this->productscategorymodel->getSortedCategories();
+        $type = $this->input->get('type');
+		$this->data['parents'] = $this->productscategorymodel->getSortedCategories(@$type);
         if($this->input->post('submit') != null){
             $this->load->library('upload_file');
 			$upload_path = 'assets/uploads/images/categories/';
