@@ -44,6 +44,21 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="box-search"> <span class="icon fa fa-search"></span>
+							<div class="block block-search">
+								<div class="block block-title"><strong>Search</strong></div>
+								<div class="block block-content">
+									<form class="form minisearch" id="search_mini_form" action="<?=base_url('search')?>" method="get">
+										<div class="field search"> <label class="label" for="search" data-role="minisearch-label"> <span>Search</span> </label>
+											<div class="control"> 
+												<input id="search" type="text" name="name" value="" placeholder="Search here..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off">
+											</div>
+										</div>
+										<div class="actions"> <button type="submit" title="Search" class="action search"> <i class="icon fa fa-search"></i> <span>Search</span> </button></div>
+									</form>
+								</div>
+							</div>
+						</div>
             </div>
         </div>
     </header>

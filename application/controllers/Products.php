@@ -178,15 +178,7 @@ class Products extends MY_Controller {
 				$this->data['actual_image']	= json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'actual_image'),array(),true)->value);
 				@$this->data['circleview'] = array_reverse(json_decode(@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'circleview'),array(),true)->value));
 				$this->data['video_attach']	= @$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach'),array(),true)->value;
-
-				// // Display video youtube
-				// if ($this->data['video_attach']) {
-				// 	$arr_video = explode(",",$this->data['video_attach']);
-				// 	foreach ($arr_video as $url) {
-				// 		parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
-				// 		$this->data['id_youtube'][] = $my_array_of_vars['v'];
-				// 	}
-				// }
+				$this->data['video_attach_thumb']	= 'assets/uploads/'.@$this->productsattachmodel->read(array('product_id'=>$this->data['product_data']->id,'attachdata'=>'video_attach_thumb'),array(),true)->value;
 				
 				// Load related products
 				$this->data['related_products'] = $this->productsmodel->getRelatedProducts($cat_chosen,8,'');
@@ -253,7 +245,7 @@ class Products extends MY_Controller {
 		if($this->data['name'] != "" || $this->data['category'] != ""){
             $config['suffix'] = '?category='.urlencode($this->data['category']).'&name='.urlencode($this->data['name']);
         }
-        $per_page = 16;
+        $per_page = 28;
         list($this->data['page_links'],$start) = $this->productsmodel->pagination('tim-kiem',$config['suffix'],$total,$per_page,2);
         $this->data['page_links'] = $this->pagination->create_links();
 		$this->data['products'] = $this->productsmodel->getListProducts('',$this->data['name'],$this->data['category'],$per_page,$start);

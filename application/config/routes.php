@@ -72,8 +72,8 @@ $route['cat/(:any)/(:num)']								=	"news/cat/$1/$2";
 $route['post/(:any)'] 											= 	"news/view/$1";
 
 $route['san-pham/(:any)']									=	"products/viewProduct/$1";
-$route['tim-kiem']                 								=	"products/product_search";
-$route['tim-kiem/(:num)']         	 					=	"products/product_search/$1";
+$route['search']                 								=	"products/product_search";
+$route['search/(:num)']         	 					=	"products/product_search/$1";
 $route['dat-hang']         	 									=	"cart/index";
 $route['cart/del']         	 									=	"cart/del";
 $route['cart/update']         	 							=	"cart/update";

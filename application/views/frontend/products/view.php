@@ -22,7 +22,7 @@
 			});
 			$('.slider-nav').slick({
 				vertical: false,
-				slidesToShow: 4,
+				slidesToShow: 5,
 				slidesToScroll: 1,
 				asNavFor: '.product-slick',
 				arrows: false,
@@ -33,13 +33,6 @@
 		});
 	</script>
 	<script src="<?=base_url('assets/plugins/lightbox/js/lightbox.min.js')?>" type="text/javascript"></script>
-	<script src="<?=base_url('assets/js/360degreesview.js')?>" type="text/javascript" ></script>
-	<script type="text/javascript">
-		var crl = circlr('circlr', {
-			scroll : true,
-			loader : 'loader'
-		});
-	</script>	
 
 	<main class="ashade-content-wrap uws-default uws-eshop-detail">
 		<div class="ashade-content-scroll">
@@ -69,12 +62,50 @@
 							<div class="row ashade-small-gap">
 								<div class="col-12 col-sm-6 uws-content-photo">
 									<?php if ((@$product_data->gallery) && @count(json_decode($product_data->gallery)) == 0) {?>
-										<img src="<?=@base_url($product_data->image)?>" class="img-holder p_detail_img">
+										<div class="product-slick">
+											<?php if (@$video_attach && @$video_attach!='') {?>
+											<div class="d-flex justify-content-center align-items-center">
+												<div class="embed-responsive embed-responsive-1by1">
+													<video width="640" height="480" controls>
+														<source src="<?=@base_url('assets/uploads/'.$video_attach)?>" />
+														Your browser does not support the video tag.
+													</video>
+												</div>
+											</div>
+											<?php } ?>
+											<div>
+												<a href="<?=@base_url($product_data->image)?>" data-lightbox="roadtrip"><img src="<?=@base_url($product_data->image)?>" alt="" class="img-fluid"></a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12 col-12 col-slick"><!-- Slider Thumb -->
+												<div class="slider-nav ratio_square">
+													<?php if (@$video_attach && @$video_attach!='') {?>
+														<div>
+															<div class="nav-item thumb bg-size position-relative video_play" data-toggle="modal" data-target="#modalVideo" style="background-image:url('<?=@base_url($video_attach_thumb)?>')"><span class="btn-play-video"><i class="fa fa-youtube"></i></span></div>
+														</div>
+													<?php } ?>
+													<div>
+														<div class="nav-item thumb bg-size" style="background-image:url('<?=@base_url($product_data->thumb)?>')"></div>
+													</div>
+												</div>
+											</div>
+										</div>
 										<?php if ((@$circleview) && @count($circleview) != 0) { ?>
 											<div class="circleview"><a class="btncircle" data-toggle="modal" data-target="#featureModal2"><img src="<?=base_url('assets/img/360-degrees.png')?>"></a></div>
 										<?php } ?>
 									<?php } else { ?>
 										<div class="product-slick"><!-- Slider Main -->
+											<?php if (@$video_attach && @$video_attach!='') {?>
+											<div class="d-flex justify-content-center align-items-center">
+												<div class="embed-responsive embed-responsive-1by1">
+													<video width="640" height="480" controls>
+														<source src="<?=@base_url('assets/uploads/'.$video_attach)?>" />
+														Your browser does not support the video tag.
+													</video>
+												</div>
+											</div>
+											<?php } ?>
 											<div>
 												<a href="<?=@base_url($product_data->image)?>" data-lightbox="roadtrip"><img src="<?=@base_url($product_data->image)?>" alt="" class="img-fluid"></a>
 											</div>
@@ -83,18 +114,15 @@
 												<a href="<?=@($item)?>" data-lightbox="roadtrip"><img src="<?=@($item)?>" alt="" class="img-fluid"></a>
 											</div>
 											<?php } ?>
-											<div class="d-flex justify-content-center align-items-center">
-												<div class="embed-responsive embed-responsive-4by3">
-													<video width="640" height="480" controls>
-														<source src="<?=@base_url('assets/uploads/'.$video_attach)?>" />
-														Your browser does not support the video tag.
-													</video>
-												</div>
-											</div>
 										</div>
 										<div class="row">
-											<div class="col-md-10 offset-md-1 col-12 col-slick"><!-- Slider Thumb -->
+											<div class="col-md-12 col-12 col-slick"><!-- Slider Thumb -->
 												<div class="slider-nav ratio_square">
+													<?php if (@$video_attach && @$video_attach!='') {?>
+													<div>
+														<div class="nav-item thumb bg-size position-relative video_play" data-toggle="modal" data-target="#modalVideo" style="background-image:url('<?=@base_url($video_attach_thumb)?>')"><span class="btn-play-video"><i class="fab fa-youtube"></i></span></div>
+													</div>
+													<?php } ?>
 													<div>
 														<div class="nav-item thumb bg-size" style="background-image:url('<?=@base_url($product_data->thumb)?>')"></div>
 													</div>
@@ -103,32 +131,14 @@
 														<div class="nav-item thumb bg-size" style="background-image:url('<?=@$item?>')"></div>
 													</div>
 													<?php } ?>
-													<div>
-														<div class="nav-item thumb bg-size position-relative video_play" data-toggle="modal" data-target="#modalVideo"><span class="btn-play-video"><i class="fab fa-youtube"></i></span></div>
-													</div>
 												</div>
 											</div>
 										</div>
 										
 										<?php if ((@$circleview) && @count($circleview) != 0) { ?>
-											<div class="circleview"><a class="btncircle" data-toggle="modal" data-target="#featureModal2"><img src="<?=base_url('assets/img/360-degrees.png')?>"></a></div>
+											<div class="circleview"><div class="btncircle" data-toggle="modal" data-target="#featureModal2"><img src="<?=base_url('assets/img/360-degrees.png')?>"></div></div>
 										<?php } ?>
 									<?php } ?>
-									<div class="modal fade" id="featureModal2" tabindex="-1" aria-labelledby="featureLabel2" aria-hidden="true">
-										<div class="modal-dialog modal-lg modal-dialog-centered">
-											<div class="modal-content box-shadow ft-2">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-												<div class="pure_circle">
-													<div id="circlr">
-														<?php foreach (@$circleview as $item) {?>
-														<img data-src="<?=@($item)?>" class="img-circle">
-														<?php } ?>
-														<div id="loader"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 						
 								<div class="col-12 col-sm-6 uws-content-text">
@@ -311,6 +321,21 @@
 		</div>
 	</div> -->
 
+	<div class="modal fade" id="featureModal2" tabindex="-1" aria-labelledby="featureLabel2" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content box-shadow ft-2">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+				<div class="pure_circle">
+					<div id="circlr">
+						<?php foreach (@$circleview as $item) {?>
+						<img data-src="<?=@($item)?>" class="img-circle">
+						<?php } ?>
+						<div id="loader"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
 	let stopScrolling = false;
 

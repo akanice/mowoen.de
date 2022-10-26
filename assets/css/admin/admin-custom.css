@@ -10,8 +10,10 @@
 }
 
 .paginationLink {
-	float: left;
-	
+	float: left;	
+}
+.img-holder {
+    max-width: 100%;
 }
 .currentLink a, .paginationLink a {
 	background-color: #fff;
